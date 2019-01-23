@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Parties réutilisées des pages
+ * Parties rÃ©utilisÃ©es des pages
  */
 
  /**
   * Fournie le <head> du site
- * @param $titre le titre de la page. ("Viewer" par défaut)
+ * @param $titre le titre de la page. ("Viewer" par dÃ©faut)
   */
 function getHead($titre = "Viewer") {
     return <<<EOT
@@ -32,8 +32,8 @@ EOT;
 
 /*
  * Fournie le menu du site
- * @param $nomPage le nom de la page sélectionnée dans le menu. 
- *        Si la page n'existe pas aucune n'est sélectionnée.
+ * @param $nomPage le nom de la page sÃ©lectionnÃ©e dans le menu. 
+ *        Si la page n'existe pas aucune n'est sÃ©lectionnÃ©e.
  */
 function getMenu($nomPage = ""){
     $pages = [
