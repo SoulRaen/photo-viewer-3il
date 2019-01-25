@@ -8,10 +8,8 @@
 <?= getMenu("Espace Pro") ?>
         <section>
             <form class="form-signin">
-                <h1 class="h3 main-title">Page de connexion</h1>
-                <label for="inputEmail" class="sr-only">Email address</label>
+                <h1 class="h3 signin-title">Page de connexion</h1>
                 <input type="email" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
-                <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
                 <button class="submit-btn" type="submit">Se connecter</button>
             </form>
