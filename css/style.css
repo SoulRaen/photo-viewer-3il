@@ -21,6 +21,7 @@ section {
 }
 
 .menu-item {
+    width: 85px;
     float: left;
     padding: 14px 16px;
     border-right: 1px solid white;
