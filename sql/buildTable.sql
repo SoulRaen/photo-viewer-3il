@@ -1,0 +1,1 @@
+CREATE TABLE `siteweb`.`users` ( `uID` INT NOT NULL AUTO_INCREMENT , `login` TEXT NOT NULL , `mdp` TEXT NOT NULL , `nom` TEXT NOT NULL , `prenom` TEXT NOT NULL , PRIMARY KEY (`uID`)) ENGINE = InnoDB;
