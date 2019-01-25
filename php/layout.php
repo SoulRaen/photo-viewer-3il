@@ -39,7 +39,8 @@ function getMenu($nomPage = ""){
     $pages = [
         "Accueil" => "",
         "Photos" => "",
-        "Contact" => ""
+        "Contact" => "",
+        "Espace Pro" => ""
     ];
     $pages[$nomPage] = ' id="menu-item-selected"';
     return <<<EOT
@@ -47,6 +48,7 @@ function getMenu($nomPage = ""){
             <a href="index.php" class="menu-item"{$pages["Accueil"]}>Accueil</a>
             <a href="photos.php" class="menu-item"{$pages["Photos"]}>Photos</a>
             <a href="contact.php" class="menu-item"{$pages["Contact"]}>Contact</a>
+            <a href="espace-pro.php" class="menu-item"{$pages["Espace Pro"]}>Espace Pro</a>
         </nav>
 
 EOT;
