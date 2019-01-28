@@ -1,11 +1,19 @@
+var listeImages = [];
+var index = 0;
+
 function image() {
     $.ajax("./php/images.php", {
         contentType: "application/json",
-        success: function(result){
-            console.log(result);
-            console.log([1,2,3,4]);
+        success: function (donnees, statut, requette) {
+            listeImages = donnees;
+            var carrousel = document.getElementById("carrousel");
+            carrousel.innerHTML = "<img src=\"./img/" + listeImages[index] + "\" alt=\"photo\" />";
+            index = (index + 1) % listeImages.length;
         }
     });
-    var carrousel = document.getElementById("carrousel");
-    carrousel.innerHTML = "<img src=\"./img/oiseaux.jpg\" alt=\"photo\" />";
 }
+
+$("#carrousel").on("click", function () {
+    this.innerHTML = "<img src=\"./img/" + listeImages[index] + "\" alt=\"photo\" />";
+            index = (index + 1) % listeImages.length
+});
