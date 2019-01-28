@@ -1,5 +1,5 @@
 header, section, footer {
-    padding-left: 8px;
+    padding: 0px 8px;
 }
 
 body {
@@ -71,4 +71,20 @@ a:hover.menu-item {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#carrousel {
+    --carrousel-height: 40vh;
+    height: var(--carrousel-height);
+    line-height: var(--carrousel-height); /* permet centrage vertical */
+    text-align: center;
+    background-color: lightgrey;
+}
+
+#carrousel img {
+    display: inline-block;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
 }
