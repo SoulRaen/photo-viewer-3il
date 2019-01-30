@@ -13,11 +13,12 @@
                 <button class="submit-btn" onclick="connect()">Se connecter</button>
             </div>
         </section>
+<?= getJQuery() ?>
     </body>
     <script>
         function connect(){
-            var login = document.getElementById("inputLogin").value
-            var mdp = document.getElementById("inputPassword").value
+            var login = $("#inputLogin")[0].value;
+            var mdp = $("#inputPassword")[0].value;
             var xmlhttp;
             if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
                 xmlhttp= new XMLHttpRequest();
@@ -41,9 +42,10 @@
                             alert("Mauvais mot de passe !");
                             break;
                         case "multiple results" :
-                            alert("Mauvais login ! : plusieurs de résultat");
+                            alert("Mauvais login ! : plusieurs résultat");
                             break;
                         case "connect ok" :
+                        console.log(donnees);
                             alert("Connecté !");
                     }
                 }

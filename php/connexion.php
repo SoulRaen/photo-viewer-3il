@@ -8,9 +8,8 @@ $dbname="siteweb";
 try {
     /* Paramétrage connexion */
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     /* Paramétrage requête */
-    $stmt = $conn->prepare("SELECT uID,email,mdp FROM users WHERE login='".$_POST["user_login"]."'");
+    $stmt = $conn->prepare("SELECT uID,email,mdp,nom,prenom FROM users WHERE login='".$_POST["user_login"]."'");
     /* Execution requête */
     $stmt->execute();
     /* Traitement des infos */
@@ -22,7 +21,9 @@ try {
         if($results[0]["mdp"]==$_POST["user_pw"]){
             echo "connect ok";
             session_start();
-            $_SESSION['connected_login']=$_POST["user_login"];
+            $_SESSION['login']=$_POST["user_login"];
+            $_SESSION['nom']=$results[0]["nom"];
+            $_SESSION['prenom']=$results[0]["prenom"];
         }else{
             echo "wrong pw";
         }

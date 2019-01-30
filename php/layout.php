@@ -24,8 +24,11 @@ EOT;
  * Fournie le <header> du site
  */
 function getHeader(){
+    session_start();
+    $nom=$_SESSION["nom"] ?? "";
+    $prenom=$_SESSION["prenom"] ?? "";
     return <<<EOT
-        <header><h1>Mon titre</h1></header>
+        <header><h1 id="mainTitle">Mon titre</h1><div id="connectionLabel">{$nom} {$prenom}</div></header>
 
 EOT;
 }
