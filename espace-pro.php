@@ -15,7 +15,6 @@
         </section>
 <?= getJQuery() ?>
     </body>
-<<<<<<< HEAD
     <script>
         function connect(){
             var login = $("#inputLogin")[0].value;
@@ -53,6 +52,4 @@
             }
         }
     </script>
-=======
->>>>>>> f2446b06b6ae00822972a595cdc52db7b77e14cd
 </html>

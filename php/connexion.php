@@ -22,7 +22,6 @@ try {
     /* Récupération de toutes les lignes d'un jeu de résultats */
     //print("Récupération de toutes les lignes d'un jeu de résultats :\n");
     $results = $stmt->fetchAll();
-<<<<<<< HEAD
     /* Si plusieurs résultats, erreur */
     if (isset($results[1])){
         echo "multiple results";
@@ -35,16 +34,6 @@ try {
             $_SESSION['prenom']=$results[0]["prenom"];
         }else{
             echo "wrong pw";
-=======
-    echo "<BR>user pw : ".$_POST["user_pw"];
-    echo "<br>uID : ".$results[0]["uID"];
-    echo "<br>login : ".$results[0]["login"];
-    echo "<br>mdp : ".$results[0]["mdp"];
-    /*foreach ($results as $i => $result) {
-        //echo "\$results[$k] => $v.\n";
-        foreach ($result as $j => $value) {
-            echo "<br>value : ".$value;
->>>>>>> f2446b06b6ae00822972a595cdc52db7b77e14cd
         }
     }*/
     //print_r($result[0]["contenu"]);
