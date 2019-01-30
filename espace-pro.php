@@ -6,15 +6,16 @@
 <?= getHeader() ?>
 <?= getMenu("Espace Pro") ?>
         <section>
-            <div class="form-signin">
+            <form class="form-signin" method="post" action="./php/connexion.php">
                 <h1 class="h3 signin-title">Page de connexion</h1>
-                <input type="login" name="user_login" id="inputLogin" class="form-control" placeholder="Login" required autofocus>
+                <input type="email" name="user_email" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
                 <input type="password" name="user_pw" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
-                <button class="submit-btn" onclick="connect()">Se connecter</button>
-            </div>
+                <button class="submit-btn" type="submit">Se connecter</button>
+            </form>
         </section>
 <?= getJQuery() ?>
     </body>
+<<<<<<< HEAD
     <script>
         function connect(){
             var login = $("#inputLogin")[0].value;
@@ -52,4 +53,6 @@
             }
         }
     </script>
+=======
+>>>>>>> f2446b06b6ae00822972a595cdc52db7b77e14cd
 </html>

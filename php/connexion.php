@@ -6,14 +6,23 @@ $password = "";
 $dbname="siteweb";
 
 try {
-    /* Paramétrage connexion */
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+<<<<<<< HEAD
     /* Paramétrage requête */
     $stmt = $conn->prepare("SELECT uID,email,mdp,nom,prenom FROM users WHERE login='".$_POST["user_login"]."'");
     /* Execution requête */
+=======
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "user email : ".$_POST["user_email"];
+    $stmt = $conn->prepare("SELECT uID,login,mdp FROM users WHERE email='".$_POST["user_email"]."'"); 
+    echo "<BR>user pw : ".$_POST["user_pw"];
+>>>>>>> f2446b06b6ae00822972a595cdc52db7b77e14cd
     $stmt->execute();
-    /* Traitement des infos */
+    echo "<BR>user pw : ".$_POST["user_pw"];
+    /* Récupération de toutes les lignes d'un jeu de résultats */
+    //print("Récupération de toutes les lignes d'un jeu de résultats :\n");
     $results = $stmt->fetchAll();
+<<<<<<< HEAD
     /* Si plusieurs résultats, erreur */
     if (isset($results[1])){
         echo "multiple results";
@@ -26,10 +35,19 @@ try {
             $_SESSION['prenom']=$results[0]["prenom"];
         }else{
             echo "wrong pw";
+=======
+    echo "<BR>user pw : ".$_POST["user_pw"];
+    echo "<br>uID : ".$results[0]["uID"];
+    echo "<br>login : ".$results[0]["login"];
+    echo "<br>mdp : ".$results[0]["mdp"];
+    /*foreach ($results as $i => $result) {
+        //echo "\$results[$k] => $v.\n";
+        foreach ($result as $j => $value) {
+            echo "<br>value : ".$value;
+>>>>>>> f2446b06b6ae00822972a595cdc52db7b77e14cd
         }
-    }else {     /* Si 0 résultat */
-        echo "no result";
-    }
+    }*/
+    //print_r($result[0]["contenu"]);
 }
 catch(PDOException $e) {
     echo "Error: " . $e->getMessage();

@@ -19,6 +19,7 @@ section {
     margin-left: auto;
     margin-right: auto;
     max-width: 80rem;
+    overflow: auto;
 }
 
 .menu-item {
@@ -54,6 +55,7 @@ a:hover.menu-item {
     font-size: 16px;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .submit-btn {
@@ -79,15 +81,44 @@ a:hover.menu-item {
     line-height: var(--carrousel-height); /* permet centrage vertical */
     text-align: center;
     background-color: lightgrey;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
-#carrousel img {
+.bouton-carrousel {
     display: inline-block;
-    margin: auto;
+    background-color: white;
+    padding: 0 50px;
+    cursor: pointer;
+}
+
+#bouton-carrousel-gauche {
+    float: left;
+}
+
+#bouton-carrousel-droite {
+    float: right;
+}
+
+.img-container {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    right: 0%;
+    --trans-carrousel: right 1s ease-in-out;
+    -webkit-transition: var(--trans-carrousel);
+    -moz-transition: var(--trans-carrousel);
+    -o-transition: var(--trans-carrousel);
+    transition: var(--trans-carrousel);
+}
+
+.img-container img {
     max-width: 100%;
     max-height: 100%;
     vertical-align: middle;
 }
+<<<<<<< HEAD
 
 #mainTitle {
     float: left;
@@ -96,3 +127,5 @@ a:hover.menu-item {
 #connectionLabel {
     float: right;
 }
+=======
+>>>>>>> f2446b06b6ae00822972a595cdc52db7b77e14cd
