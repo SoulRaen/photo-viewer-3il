@@ -1,19 +1,34 @@
 var listeImages = [];
-var index = 0;
 
 function image() {
     $.ajax("./php/images.php", {
         contentType: "application/json",
         success: function (donnees, statut, requette) {
             listeImages = donnees;
-            var carrousel = document.getElementById("carrousel");
-            carrousel.innerHTML = "<img src=\"./img/" + listeImages[index] + "\" alt=\"photo\" />";
-            index = (index + 1) % listeImages.length;
+            var carrousel = $("#carrousel").first();
+            for (i = 0; i < listeImages.length; i++) {
+                carrousel.innerHTML += "<div class=\"img-container\"><img src=\"./img/" + listeImages[i] + "\" alt=\"photo\" /></div>";
+            }
         }
     });
 }
 
-$("#carrousel").on("click", function () {
-    this.innerHTML = "<img src=\"./img/" + listeImages[index] + "\" alt=\"photo\" />";
-            index = (index + 1) % listeImages.length
+$("#bouton-carrousel-droite").on("click", function () {
+    var positionPx = $(".img-container").css("right");
+    var parentWidthPx = $(".img-container").parent().css("width");
+    var positionPxVal = parseInt(positionPx);
+    var parentWidthPxVal = parseInt(parentWidthPx);
+    //ajoute 100% à la propriété "right" pour décaler les images et changer celle visible
+    var newVal = (positionPxVal/parentWidthPxVal * 100 + 100) + "%";
+    $(".img-container").css("right", newVal);
+});
+
+$("#bouton-carrousel-gauche").on("click", function () {
+    var positionPx = $(".img-container").css("right");
+    var parentWidthPx = $(".img-container").parent().css("width");
+    var positionPxVal = parseInt(positionPx);
+    var parentWidthPxVal = parseInt(parentWidthPx);
+    //ajoute 100% à la propriété "right" pour décaler les images et changer celle visible
+    var newVal = (positionPxVal/parentWidthPxVal * 100 - 100) + "%";
+    $(".img-container").css("right", newVal);
 });
