@@ -48,6 +48,13 @@ a:hover.menu-item {
     margin: auto;
 }
 
+.file-upload{
+    width: 100%;
+    max-width: 1000px;
+    padding: 15px;
+    margin: auto;
+}
+
 .form-control {
     width: 100%;
     height: auto;
@@ -55,7 +62,6 @@ a:hover.menu-item {
     font-size: 16px;
     border: 1px solid #ced4da;
     border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .submit-btn {
@@ -68,11 +74,8 @@ a:hover.menu-item {
     border-radius: .3rem;
 }
 
-.signin-title {
-    max-width: 220px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.centered-title {
+	text-align: center;
 }
 
 #carrousel {
@@ -125,4 +128,9 @@ a:hover.menu-item {
 
 #connectionLabel {
     float: right;
+}
+
+#filename {
+	background-color: rgba(250, 250, 250, 1);
+    box-shadow: 0px 0px 3px black;
 }
