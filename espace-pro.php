@@ -6,12 +6,12 @@
 <?= getHeader() ?>
 <?= getMenu("Espace Pro") ?>
         <section>
-            <div class="form-signin" method="post" action="./php/connexion.php">
-                <h1 class="h3 signin-title">Page de connexion</h1>
+            <form class="form-signin" method="post" action="./php/connexion.php">
+                <h1 class="centered-title">Page de connexion</h1>
                 <input type="login" id="inputLogin" class="form-control" placeholder="Login" required autofocus>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
                 <button class="submit-btn">Se connecter</button>
-            </div>
+            </form>
         </section>
 <?= getJQuery() ?>
     </body>
