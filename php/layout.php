@@ -53,7 +53,7 @@ function getMenu($nomPage = ""){
             <a href="photos.php" class="menu-item"{$pages["Photos"]}>Photos</a>
             <a href="contact.php" class="menu-item"{$pages["Contact"]}>Contact</a>
             <a href="espace-pro.php" class="menu-item"{$pages["Espace Pro"]}>Espace Pro</a>
-            <a href="upload-images.php" class="menu-item"{$pages["Upload images"]}>Espace Pro</a>
+            <a href="upload-images.php" class="menu-item"{$pages["Upload images"]}>Upload photos</a>
         </nav>
 
 EOT;
