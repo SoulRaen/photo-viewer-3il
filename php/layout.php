@@ -47,16 +47,27 @@ function getMenu($nomPage = ""){
         "Upload images" =>""
     ];
     $pages[$nomPage] = ' id="menu-item-selected"';
+    if(isset($_SESSION["login"])){
+        return <<<EOT
+        <nav>
+            <a href="index.php" class="menu-item"{$pages["Accueil"]}>Accueil</a>
+            <a href="photos.php" class="menu-item"{$pages["Photos"]}>Photos</a>
+            <a href="contact.php" class="menu-item"{$pages["Contact"]}>Contact</a>
+            <a href="espace-pro.php" class="menu-item"{$pages["Espace Pro"]}>Espace Pro</a>
+            <a href="upload-images.php" class="menu-item"{$pages["Upload images"]}>Upload</a>
+        </nav>
+EOT;  
+    }else{
     return <<<EOT
         <nav>
             <a href="index.php" class="menu-item"{$pages["Accueil"]}>Accueil</a>
             <a href="photos.php" class="menu-item"{$pages["Photos"]}>Photos</a>
             <a href="contact.php" class="menu-item"{$pages["Contact"]}>Contact</a>
             <a href="espace-pro.php" class="menu-item"{$pages["Espace Pro"]}>Espace Pro</a>
-            <a href="upload-images.php" class="menu-item"{$pages["Upload images"]}>Upload photos</a>
         </nav>
 
 EOT;
+    }
 }
 
 /*

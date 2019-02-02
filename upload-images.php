@@ -4,7 +4,7 @@
 <?= getHead() ?>
     <body>
 <?= getHeader() ?>
-<?= getMenu("Upload photos") ?>
+<?= getMenu("Upload images") ?>
 		<div class ="file-upload">
 			<h1 class="centered-title">Ajout d'images au carrousel</h1>
 			<input type="file" id="filename" class="form-control" placeholder="Fichier à envoyer" required autofocus>

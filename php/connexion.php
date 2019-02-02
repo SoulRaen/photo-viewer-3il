@@ -14,21 +14,30 @@ try {
     $stmt->execute();
     /* Traitement des infos */
     $results = $stmt->fetchAll();
+
+    header("Content-Type: application/json");
+
     /* Si plusieurs résultats, erreur */
     if (isset($results[1])){
-        echo "multiple results";
+        $coderesultat = array("code resultat" => "resultats mutiples");
+        echo json_encode($coderesultat,JSON_FORCE_OBJECT);
     }else if(isset($results[0])){       /* Si un résultat présent, traiter */
         if($results[0]["mdp"]==$_POST["user_pw"]){
-            echo "connect ok";
+            session_cache_expire(1);
             session_start();
             $_SESSION['login']=$_POST["user_login"];
             $_SESSION['nom']=$results[0]["nom"];
             $_SESSION['prenom']=$results[0]["prenom"];
+            $nouvelOnglet = array ("href" => "upload-images.php","class" => "menu-item","innerText" => "Upload");
+            $coderesultat = array("code resultat" => "connexion OK","nom" => $results[0]["nom"],"prenom" => $results[0]["prenom"],"timeout session" => session_cache_expire(),"nouvel onglet" => $nouvelOnglet );
+            echo json_encode($coderesultat,JSON_FORCE_OBJECT);
         }else{
-            echo "wrong pw";
+            $coderesultat = array("code resultat" => "mauvais mdp");
+            echo json_encode($coderesultat,JSON_FORCE_OBJECT);
         }
     }else {     /* Si 0 résultat */
-        echo "no result";
+        $coderesultat = array("code resultat" => "pas de resultats");
+        echo json_encode($coderesultat,JSON_FORCE_OBJECT);
     }
 }
 catch(PDOException $e) {

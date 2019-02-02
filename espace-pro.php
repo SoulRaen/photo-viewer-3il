@@ -7,7 +7,7 @@
 <?= getMenu("Espace Pro") ?>
         <section>
             <form class="form-signin">
-                <h1 class="h3 signin-title">Page de connexion</h1>
+                <h1 class="centered-title">Page de connexion</h1>
                 <input type="login" name="user_login" id="inputLogin" class="form-control" placeholder="Login" required autofocus>
                 <input type="password" name="user_pw" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
                 <button class="submit-btn" type="button" onclick="connect()">Se connecter</button>
@@ -45,20 +45,36 @@
                 xmlhttp.onreadystatechange = function (){
                     /* Chargement de la réponse finie + status HTTP OK */
                     if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
+                        var jsonobj = JSON.parse(xmlhttp.responseText);
+
                         /* Réaction à la réponse */
-                        switch (xmlhttp.responseText) {
-                            case "no result" :
+                        switch (jsonobj["code resultat"]) {
+                            case "pas de resultats" :
                                 alert("Mauvais login ! : Pas de résultat");
                                 break;
-                            case "wrong pw" :
+                            case "mauvais mdp" :
                                 alert("Mauvais mot de passe !");
                                 break;
-                            case "multiple results" :
+                            case "resultats mutiples" :
                                 alert("Mauvais login ! : plusieurs résultat");
                                 break;
-                            case "connect ok" :
+                            case "connexion OK" :
+                                /* Empêche de se reconnecter une fois connecté */
                                 nbconnect++;
+                                /* Ajout de l'étiquette avec nom + prénom dès la fermeture de la fenêtre d'Alert */
+                                document.getElementById("connectionLabel").innerText = jsonobj["nom"]+" "+jsonobj["prenom"];
                                 alert("Connecté !");
+                                
+                                /* Ajout du nouvel onglet */
+                                var x = document.getElementsByTagName("nav");
+                                var last_link = x.item(  (x.length) -1  );
+                                var newText = document.createElement("a");
+                                newText.href=jsonobj["nouvel onglet"]["href"];
+                                newText.classList.add(jsonobj["nouvel onglet"]["class"]);
+                                newText.innerText=jsonobj["nouvel onglet"]["innerText"];
+                                last_link.appendChild(newText);
+
+
                         }
                     }
                 }
