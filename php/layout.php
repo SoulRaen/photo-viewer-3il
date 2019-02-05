@@ -51,12 +51,6 @@ function getMenu($nomPage = ""){
             <a href="espace-pro.php" class="menu-item"{$pages["Espace Pro"]}>Espace Pro</a>
             
 EOT;
-    if(isset($_SESSION["login"])){
-        $menuHtml .= <<<EOT
-            <a href="upload-images.php" class="menu-item"{$pages["Upload images"]}>Upload</a>
-        
-EOT;
-    }
     $menuHtml .= <<<EOT
         </nav>
         

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once("php/layout.php"); ?>
+<?php 
+    require_once("php/layout.php");?>
 <?= getHead() ?>
     <body>
 <?= getHeader() ?>
 <?= getMenu("Espace Pro") ?>
+    <?php
+    if(!isset($_SESSION["login"])){
+    ?>
         <section>
             <form class="form-signin">
                 <h1 class="centered-title">Page de connexion</h1>
@@ -21,7 +25,6 @@
         $('form').bind("keypress", function(e) {
             if (e.keyCode == 13) {               
                 e.preventDefault();
-                //alert("touche entree");
                 connect();
                 return false;
             }
@@ -66,19 +69,27 @@
                                 alert("Connecté !");
                                 
                                 /* Ajout du nouvel onglet */
-                                var x = document.getElementsByTagName("nav");
+                                /*var x = document.getElementsByTagName("nav");
                                 var last_link = x.item(  (x.length) -1  );
                                 var newText = document.createElement("a");
                                 newText.href=jsonobj["nouvel onglet"]["href"];
                                 newText.classList.add(jsonobj["nouvel onglet"]["class"]);
                                 newText.innerText=jsonobj["nouvel onglet"]["innerText"];
-                                last_link.appendChild(newText);
-
-
+                                last_link.appendChild(newText);*/
+                                window.location.replace("./espace-pro.php");
                         }
                     }
                 }
             }
         }
     </script>
+    <?php
+    }else{ ?>
+        <div class ="file-upload">
+			<h1 class="centered-title">Ajout d'images au carrousel</h1>
+			<input type="file" id="filename" class="form-control" placeholder="Fichier à envoyer" required autofocus>
+		</div>
+    <?php
+    }
+    ?>
 </html>
