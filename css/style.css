@@ -99,6 +99,15 @@ a:hover.menu-item {
     float: left;
 }
 
+#compteur-images{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: -18px;
+    z-index: -1; /* empêche l'élément de se retrouver devant les boutons du carrousel */
+}
+
 #bouton-carrousel-droite {
     float: right;
 }
@@ -120,6 +129,7 @@ a:hover.menu-item {
     max-width: 100%;
     max-height: 100%;
     vertical-align: middle;
+    margin-bottom: 3px; /* compense un décalage dans l'alignement vertical */
 }
 
 #mainTitle {

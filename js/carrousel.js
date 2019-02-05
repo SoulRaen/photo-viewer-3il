@@ -1,34 +1,75 @@
 var listeImages = [];
+var idxImgCourante;
 
-function image() {
-    $.ajax("./php/images.php", {
-        contentType: "application/json",
-        success: function (donnees, statut, requette) {
-            listeImages = donnees;
-            var carrousel = $("#carrousel").first();
+/**
+ * Récupère les images présentes sur le serveur
+ */
+function getImages() {
+    var xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			//en cas de succès de la requête, ajoute les images récupérées au DOM du carrousel
+            listeImages = JSON.parse(this.responseText);
+            var carrousel = $("#carrousel")[0];
+            carrousel.innerHTML = "";
+            idxImgCourante = 0;
+            var compteur = $("#compteur-images")[0];
+            compteur.innerHTML = idxImgCourante+1 + "/" + listeImages.length;
             for (i = 0; i < listeImages.length; i++) {
                 carrousel.innerHTML += "<div class=\"img-container\"><img src=\"./img/" + listeImages[i] + "\" alt=\"photo\" /></div>";
             }
+            $("#bouton-carrousel-droite").show();
+            $("#bouton-carrousel-gauche").hide();
+            $("#compteur-images").show();
         }
-    });
+    }
+	//envoi de la requête à php/images.php
+	xmlhttp.open("GET", "./php/images.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/json");
+	xmlhttp.send();
+    
 }
 
 $("#bouton-carrousel-droite").on("click", function () {
-    var positionPx = $(".img-container").css("right");
-    var parentWidthPx = $(".img-container").parent().css("width");
-    var positionPxVal = parseInt(positionPx);
-    var parentWidthPxVal = parseInt(parentWidthPx);
-    //ajoute 100% à la propriété "right" pour décaler les images et changer celle visible
-    var newVal = (positionPxVal/parentWidthPxVal * 100 + 100) + "%";
-    $(".img-container").css("right", newVal);
+    idxImgCourante++;
+    console.log(idxImgCourante);
+    //se cale sur la position de l'image de manière à afficher celle correspondant à l'index courant et cacher les autres
+    if (idxImgCourante >= 0 && idxImgCourante < listeImages.length) {
+        var newVal = (idxImgCourante * 100) + "%";
+        $(".img-container").css("right", newVal);
+    }
+    /* Cache le bouton droite si c'est la dernière image */
+    if (idxImgCourante + 1 >= listeImages.length) {
+        $("#bouton-carrousel-droite").hide();
+    }
+    /* Montre le bouton gauche en quittant la première image */
+    if (idxImgCourante - 1 >= 0) {
+        $("#bouton-carrousel-gauche").show();
+    }
+    //met le compteur à jour 
+    var compteur = $("#compteur-images")[0];
+    compteur.innerHTML = idxImgCourante+1 + "/" + listeImages.length;
+    
 });
 
 $("#bouton-carrousel-gauche").on("click", function () {
-    var positionPx = $(".img-container").css("right");
-    var parentWidthPx = $(".img-container").parent().css("width");
-    var positionPxVal = parseInt(positionPx);
-    var parentWidthPxVal = parseInt(parentWidthPx);
-    //ajoute 100% à la propriété "right" pour décaler les images et changer celle visible
-    var newVal = (positionPxVal/parentWidthPxVal * 100 - 100) + "%";
-    $(".img-container").css("right", newVal);
+    idxImgCourante--;
+    //se cale sur la position de l'image de manière à afficher celle correspondant à l'index courant et cacher les autres
+    if (idxImgCourante >= 0 && idxImgCourante < listeImages.length) {
+        var newVal = (idxImgCourante * 100) + "%";
+        $(".img-container").css("right", newVal);
+    }
+    /* Cache le bouton gauche si c'est la première image */
+    if (idxImgCourante - 1 < 0) {
+        $("#bouton-carrousel-gauche").hide();
+    }
+    /* Montre le bouton droite en quittant la dernière image */
+    if (idxImgCourante + 1 < listeImages.length) {
+        $("#bouton-carrousel-droite").show();
+    }
+    //met le compteur à jour 
+    var compteur = $("#compteur-images")[0];
+    compteur.innerHTML = idxImgCourante+1 + "/" + listeImages.length;
+    
 });
