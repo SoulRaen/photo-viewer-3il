@@ -85,10 +85,11 @@
     </script>
     <?php
     }else{ ?>
-        <div class ="file-upload">
+        <form class ="file-upload" action="php/upload.php" method="post" enctype="multipart/form-data">
 			<h1 class="centered-title">Ajout d'images au carrousel</h1>
-			<input type="file" id="filename" class="form-control" placeholder="Fichier à envoyer" required autofocus>
-		</div>
+			<input type="file" id="filename" class="form-control" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" class="submit-btn" name="submit">
+        </form>
     <?php
     }
     ?>
