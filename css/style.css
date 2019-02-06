@@ -7,6 +7,9 @@ body {
     background-color: #bbddff;
     font-family: Arial;
     margin: 0px;
+    /* variables CSS globales */
+    --padding-h-menu: 16px; /* padding horizontal des éléments du menu */
+    --width-menu-item: 100px /* largeur des éléments du menu lorsqu'il est étendable */
 }
 
 nav {
@@ -15,17 +18,25 @@ nav {
     overflow: auto;
 }
 
-section {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 80rem;
-    overflow: auto;
+#expand-button {
+    background-color: #000000;
+    color: white;
+    display: none;
+    float: left;
+    padding: 14px var(--padding-h-menu);
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+    position:fixed;
+    z-index: 255;
 }
 
 .menu-item {
     width: 85px;
     float: left;
-    padding: 14px 16px;
+    padding: 14px var(--padding-h-menu);
     border-right: 1px solid white;
     text-align: center;
     color: inherit;
@@ -39,6 +50,47 @@ section {
 a:hover.menu-item {
     background-color: #ddd;
     color: black;
+}
+
+#connectionLabel {
+    float: right;
+    width: initial;
+}
+
+@media screen and (max-width: 900px) {
+    nav {
+        display: none;
+        position:fixed;
+        z-index: 255;
+        width: calc(var(--width-menu-item) + var(--padding-h-menu) * 2);
+        border-top: 1px solid white;
+        border-right: 1px solid white;
+        border-bottom: 1px solid white;
+    }
+
+    #expand-button {
+        display: inline-block;
+    }
+    
+    .menu-item {
+        width: var(--width-menu-item);
+        border: initial;
+        float: right;
+        border-bottom: 1px solid white;
+    }
+    
+    #connectionLabel {
+        float: right;
+        width: var(--width-menu-item);
+        border-bottom: initial;
+    }
+}
+
+section {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80rem;
+    overflow: auto;
 }
 
 .form-signin {
@@ -130,15 +182,6 @@ a:hover.menu-item {
     max-height: 100%;
     vertical-align: middle;
     margin-bottom: 3px; /* compense un décalage dans l'alignement vertical */
-}
-
-#mainTitle {
-    float: left;
-}
-
-#connectionLabel {
-    float: right;
-    width: initial;
 }
 
 #filename {
