@@ -23,16 +23,12 @@ try {
         echo json_encode($coderesultat,JSON_FORCE_OBJECT);
     }else if(isset($results[0])){       /* Si un résultat présent, traiter */
         if($results[0]["mdp"]==$_POST["user_pw"]){
-            if(!date_default_timezone_set('Europe/Paris')){
-                echo "err";
-            }
             session_start();
             $_SESSION['login']=$_POST["user_login"];
             $_SESSION['nom']=$results[0]["nom"];
             $_SESSION['prenom']=$results[0]["prenom"];
             $_SESSION['date-heure-login']=time();
             $_SESSION['duree-session-min']=15;
-            $nouvelOnglet = array("href" => "upload-images.php","class" => "menu-item","innerText" => "Upload");
             $coderesultat = array("code resultat" => "connexion OK","nom" => $results[0]["nom"],"prenom" => $results[0]["prenom"],"duree-session-min"=>$_SESSION['duree-session-min']);
             echo json_encode($coderesultat,JSON_FORCE_OBJECT);
         }else{

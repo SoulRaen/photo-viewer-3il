@@ -1,5 +1,5 @@
 <?php
-require_once("verif_connect.php");
+require_once("verif-connect.php");
 /*
  * Parties réutilisées des pages
  */

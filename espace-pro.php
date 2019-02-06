@@ -66,16 +66,8 @@
                                 nbconnect++;
                                 /* Ajout de l'étiquette avec nom + prénom dès la fermeture de la fenêtre d'Alert */
                                 document.getElementById("connectionLabel").innerText = jsonobj["nom"]+" "+jsonobj["prenom"];
-                                alert("Connecté !");
-                                
-                                /* Ajout du nouvel onglet */
-                                /*var x = document.getElementsByTagName("nav");
-                                var last_link = x.item(  (x.length) -1  );
-                                var newText = document.createElement("a");
-                                newText.href=jsonobj["nouvel onglet"]["href"];
-                                newText.classList.add(jsonobj["nouvel onglet"]["class"]);
-                                newText.innerText=jsonobj["nouvel onglet"]["innerText"];
-                                last_link.appendChild(newText);*/
+                                alert("Connecté pour "+jsonobj["duree-session-min"]+" minute(s)");
+
                                 window.location.replace("./espace-pro.php");
                         }
                     }
@@ -85,11 +77,26 @@
     </script>
     <?php
     }else{ ?>
-        <form class ="file-upload" action="php/upload.php" method="post" enctype="multipart/form-data">
+        <body>
+        <form class ="file-upload" enctype="multipart/form-data">
 			<h1 class="centered-title">Ajout d'images au carrousel</h1>
-			<input type="file" id="filename" class="form-control" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Upload Image" class="submit-btn" name="submit">
+			<input type="file" id="filename" class="form-control">
+            <input type="button" onclick="upload()" value="Upload" class="submit-btn">
         </form>
+            <!--<progress></progress>-->
+        </body>
+        <script>
+            function upload(){
+                var fileInput = document.getElementById('filename');
+                var file = fileInput.files[0];
+                var formData = new FormData();
+                formData.append('file', file);
+                var xhr = new XMLHttpRequest();
+                // Add any event handlers here...
+                xhr.open('POST', 'php/upload.php', true);
+                xhr.send(formData);
+            }
+        </script>
     <?php
     }
     ?>
