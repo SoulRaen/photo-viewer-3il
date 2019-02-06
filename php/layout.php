@@ -1,9 +1,5 @@
 <?php
 require_once("verif-connect.php");
-<<<<<<< HEAD
-=======
-
->>>>>>> 69eb9b6b78cd27c8020ef3951cf9ef30ca8738a4
 /*
  * Parties réutilisées des pages
  */
