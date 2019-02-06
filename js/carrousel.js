@@ -11,13 +11,11 @@ function getImages() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			//en cas de succès de la requête, ajoute les images récupérées au DOM du carrousel
             listeImages = JSON.parse(this.responseText);
-            var carrousel = $("#carrousel")[0];
-            carrousel.innerHTML = "";
+            $("#carrousel").html("");
             idxImgCourante = 0;
-            var compteur = $("#compteur-images")[0];
-            compteur.innerHTML = idxImgCourante+1 + "/" + listeImages.length;
+            $("#compteur-images").html(idxImgCourante+1 + "/" + listeImages.length);
             for (i = 0; i < listeImages.length; i++) {
-                carrousel.innerHTML += "<div class=\"img-container\"><img src=\"./img/" + listeImages[i] + "\" alt=\"photo\" /></div>";
+                $("#carrousel").append("<div class=\"img-container\"><img src=\"./img/" + listeImages[i] + "\" alt=\"photo\" /></div>");
             }
             $("#bouton-carrousel-droite").show();
             $("#bouton-carrousel-gauche").hide();
@@ -48,8 +46,7 @@ $("#bouton-carrousel-droite").on("click", function () {
         $("#bouton-carrousel-gauche").show();
     }
     //met le compteur à jour 
-    var compteur = $("#compteur-images")[0];
-    compteur.innerHTML = idxImgCourante+1 + "/" + listeImages.length;
+    $("#compteur-images").html(idxImgCourante+1 + "/" + listeImages.length);
     
 });
 
@@ -69,7 +66,6 @@ $("#bouton-carrousel-gauche").on("click", function () {
         $("#bouton-carrousel-droite").show();
     }
     //met le compteur à jour 
-    var compteur = $("#compteur-images")[0];
-    compteur.innerHTML = idxImgCourante+1 + "/" + listeImages.length;
+    $("#compteur-images").html(idxImgCourante+1 + "/" + listeImages.length);
     
 });
