@@ -138,6 +138,7 @@ a:hover.menu-item {
 
 #connectionLabel {
     float: right;
+    width: initial;
 }
 
 #filename {

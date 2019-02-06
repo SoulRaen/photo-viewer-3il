@@ -23,10 +23,9 @@ EOT;
  * Fournie le <header> du site
  */
 function getHeader(){
-    $nom=$_SESSION["nom"] ?? "";
-    $prenom=$_SESSION["prenom"] ?? "";
     return <<<EOT
-        <header><h1 id="mainTitle">Mon titre</h1><div id="connectionLabel">{$nom} {$prenom}</div></header>
+        <header><h1 id="mainTitle">Mon titre</h1></header>
+        
 EOT;
 }
 /*
@@ -37,23 +36,25 @@ EOT;
 function getMenu($nomPage = ""){
     $pages = [
         "Accueil" => "",
+        "News" => "",
         "Photos" => "",
         "Contact" => "",
         "Espace Pro" => "",
         "Upload images" =>""
     ];
     $pages[$nomPage] = ' id="menu-item-selected"';
+    $nom = $_SESSION["nom"] ?? "";
+    $prenom = $_SESSION["prenom"] ?? "";
     $menuHtml = <<<EOT
         <nav>
             <a href="index.php" class="menu-item"{$pages["Accueil"]}>Accueil</a>
+            <a href="news.php" class="menu-item"{$pages["News"]}>News</a>
             <a href="photos.php" class="menu-item"{$pages["Photos"]}>Photos</a>
             <a href="contact.php" class="menu-item"{$pages["Contact"]}>Contact</a>
             <a href="espace-pro.php" class="menu-item"{$pages["Espace Pro"]}>Espace Pro</a>
-            
-EOT;
-    $menuHtml .= <<<EOT
+            <a class="menu-item" id="connectionLabel">{$nom} {$prenom} (Déconnexion)</a>
         </nav>
-        
+            
 EOT;
     return $menuHtml;
 }
