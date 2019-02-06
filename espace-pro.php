@@ -17,7 +17,6 @@
                 <button class="submit-btn" type="button" onclick="connect()">Se connecter</button>
             </form>
         </section>
-<?= getJQuery() ?>
     </body>
     <script>
         var nbconnect = 0;
@@ -91,13 +90,34 @@
                 var file = fileInput.files[0];
                 var formData = new FormData();
                 formData.append('file', file);
-                var xhr = new XMLHttpRequest();
+                var xmlhttp = new XMLHttpRequest();
                 // Add any event handlers here...
-                xhr.open('POST', 'php/upload.php', true);
-                xhr.send(formData);
+                xmlhttp.open('POST', 'php/upload.php', true);
+                xmlhttp.send(formData);
+                /* Quand l'état change */
+                xmlhttp.onreadystatechange = function (){
+                    /* Chargement de la réponse finie + status HTTP OK */
+                    if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
+                        var jsonobj = JSON.parse(xmlhttp.responseText);
+
+                        /* Réaction à la réponse */
+                        switch (jsonobj["code resultat"]) {
+                            case "fichier existe deja" :
+                                alert("Cette image existe déjà sur le serveur.");
+                                break;
+                            case "mauvais type image" :
+                                alert("Type de fichier non autorisé.");
+                                break;
+                            case "upload OK" :
+                                alert("L'envoi s'est déroulé avec succès.");
+                                break;
+                        }
+                    }
+                }
             }
         </script>
     <?php
     }
     ?>
+    <?= getScriptsCommuns() ?>
 </html>
