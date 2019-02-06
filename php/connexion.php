@@ -31,8 +31,9 @@ try {
             $_SESSION['nom']=$results[0]["nom"];
             $_SESSION['prenom']=$results[0]["prenom"];
             $_SESSION['date-heure-login']=time();
+            $_SESSION['duree-session-min']=15;
             $nouvelOnglet = array("href" => "upload-images.php","class" => "menu-item","innerText" => "Upload");
-            $coderesultat = array("code resultat" => "connexion OK","nom" => $results[0]["nom"],"prenom" => $results[0]["prenom"],"nouvel onglet" => $nouvelOnglet);
+            $coderesultat = array("code resultat" => "connexion OK","nom" => $results[0]["nom"],"prenom" => $results[0]["prenom"],"duree-session-min"=>$_SESSION['duree-session-min']);
             echo json_encode($coderesultat,JSON_FORCE_OBJECT);
         }else{
             $coderesultat = array("code resultat" => "mauvais mdp");
