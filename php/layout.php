@@ -1,5 +1,6 @@
 <?php
-require_once("verif_connect.php");
+require_once("verif-connect.php");
+
 /*
  * Parties réutilisées des pages
  */
@@ -15,6 +16,7 @@ function getHead($titre = "Viewer") {
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
         <title>Viewer</title>
     </head>
+
 EOT;
  }
  
@@ -24,8 +26,8 @@ EOT;
  */
 function getHeader(){
     return <<<EOT
-        <header><h1 id="mainTitle">Mon titre</h1></header>
-        
+        <header><h1>Mon titre</h1></header>
+
 EOT;
 }
 /*
@@ -52,21 +54,31 @@ function getMenu($nomPage = ""){
             <a href="photos.php" class="menu-item"{$pages["Photos"]}>Photos</a>
             <a href="contact.php" class="menu-item"{$pages["Contact"]}>Contact</a>
             <a href="espace-pro.php" class="menu-item"{$pages["Espace Pro"]}>Espace Pro</a>
-            <a class="menu-item" id="connectionLabel">{$nom} {$prenom} (Déconnexion)</a>
+
+EOT;
+    if (isset($_SESSION["login"])) {
+    $menuHtml .= <<<EOT
+            <a href="php/deconnexion.php" class="menu-item" id="connectionLabel">{$nom} {$prenom} (Déconnexion)</a>
+
+EOT;
+    }
+    $menuHtml .= <<<EOT
         </nav>
-            
+        <div id="expand-button" onclick="toggleExpand()">...</div>
+
 EOT;
     return $menuHtml;
 }
 /*
  * Fournie l'appel à jQuery
  */
-function getJQuery() {
+function getScriptsCommuns() {
     return <<<EOT
         <script
 			  src="./js/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			  crossorigin="anonymous"></script>
-              
+        <script src="./js/menu.js"></script>
+
 EOT;
 }
