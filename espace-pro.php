@@ -7,6 +7,7 @@
 <?= getHeader() ?>
 <?= getMenu("Espace Pro") ?>
     <?php
+    /* Si personne n'est connecté, afficher la page de connexion */
     if(!isset($_SESSION["login"])){
     ?>
         <section>
@@ -17,107 +18,23 @@
                 <button class="submit-btn" type="button" onclick="connect()">Se connecter</button>
             </form>
         </section>
+        <script src="./js/connexion.js"></script>
+        <?= getScriptsCommuns() ?>
     </body>
-    <script>
-        var nbconnect = 0;
-
-        $('form').bind("keypress", function(e) {
-            if (e.keyCode == 13) {               
-                e.preventDefault();
-                connect();
-                return false;
-            }
-        });
-
-        function connect(){
-            if(nbconnect<=0){
-                var login = $("#inputLogin")[0].value;
-                var mdp = $("#inputPassword")[0].value;
-                var xmlhttp;
-                if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
-                    xmlhttp= new XMLHttpRequest();
-                }else {                             /* Si XMLHttpRequest n'est pas supporté */
-                    xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                /* Paramètre le type de connexion + la destination + type de contenu + contenu */
-                xmlhttp.open("POST","./php/connexion.php",true);
-                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xmlhttp.send("user_login="+login+"&user_pw="+mdp);
-                /* Quand l'état change */
-                xmlhttp.onreadystatechange = function (){
-                    /* Chargement de la réponse finie + status HTTP OK */
-                    if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
-                        var jsonobj = JSON.parse(xmlhttp.responseText);
-
-                        /* Réaction à la réponse */
-                        switch (jsonobj["code resultat"]) {
-                            case "pas de resultats" :
-                                alert("Mauvais login ! : Pas de résultat");
-                                break;
-                            case "mauvais mdp" :
-                                alert("Mauvais mot de passe !");
-                                break;
-                            case "resultats mutiples" :
-                                alert("Mauvais login ! : plusieurs résultat");
-                                break;
-                            case "connexion OK" :
-                                /* Empêche de se reconnecter une fois connecté */
-                                nbconnect++;
-                                /* Ajout de l'étiquette avec nom + prénom dès la fermeture de la fenêtre d'Alert */
-                                document.getElementById("connectionLabel").innerText = jsonobj["nom"]+" "+jsonobj["prenom"];
-                                alert("Connecté pour "+jsonobj["duree-session-min"]+" minute(s)");
-
-                                window.location.replace("./espace-pro.php");
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <?php
+    /* Si quelqu'un est connecté, afficher la page d'upload */
     }else{ ?>
-        <body>
-        <form class ="file-upload" enctype="multipart/form-data">
-			<h1 class="centered-title">Ajout d'images au carrousel</h1>
-			<input type="file" id="filename" class="form-control">
-            <input type="button" onclick="upload()" value="Upload" class="submit-btn">
-        </form>
-            <!--<progress></progress>-->
+        <section>
+                <form class ="file-upload" enctype="multipart/form-data">
+                    <h1 class="centered-title">Ajout d'images au carrousel</h1>
+                    <input type="file" id="filename" class="form-control" accept="image/*"/>
+                    <input type="button" onclick="upload()" value="Upload" class="submit-btn"/>
+                </form>
+            </section>
+        <script src="./js/upload.js"> </script>
+        <?= getScriptsCommuns() ?>
         </body>
-        <script>
-            function upload(){
-                var fileInput = document.getElementById('filename');
-                var file = fileInput.files[0];
-                var formData = new FormData();
-                formData.append('file', file);
-                var xmlhttp = new XMLHttpRequest();
-                // Add any event handlers here...
-                xmlhttp.open('POST', 'php/upload.php', true);
-                xmlhttp.send(formData);
-                /* Quand l'état change */
-                xmlhttp.onreadystatechange = function (){
-                    /* Chargement de la réponse finie + status HTTP OK */
-                    if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
-                        var jsonobj = JSON.parse(xmlhttp.responseText);
-
-                        /* Réaction à la réponse */
-                        switch (jsonobj["code resultat"]) {
-                            case "fichier existe deja" :
-                                alert("Cette image existe déjà sur le serveur.");
-                                break;
-                            case "mauvais type image" :
-                                alert("Type de fichier non autorisé.");
-                                break;
-                            case "upload OK" :
-                                alert("L'envoi s'est déroulé avec succès.");
-                                break;
-                        }
-                    }
-                }
-            }
-        </script>
     <?php
     }
     ?>
-    <?= getScriptsCommuns() ?>
 </html>
