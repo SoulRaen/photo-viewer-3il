@@ -18,12 +18,13 @@
                 <button class="submit-btn" type="button" onclick="connect()">Se connecter</button>
             </form>
         </section>
-        <script src="./js/connexion.js"></script>
         <?= getScriptsCommuns() ?>
+        <script src="./js/connexion.js"></script>
     </body>
     <?php
     /* Si quelqu'un est connecté, afficher la page d'upload */
-    }else{ ?>
+    }else{
+        ?>
         <section>
                 <form class ="file-upload" enctype="multipart/form-data">
                     <h1 class="centered-title">Ajout d'images au carrousel</h1>
@@ -31,8 +32,8 @@
                     <input type="button" onclick="upload()" value="Upload" class="submit-btn"/>
                 </form>
             </section>
-        <script src="./js/upload.js"> </script>
         <?= getScriptsCommuns() ?>
+        <script src="./js/upload.js"> </script>
         </body>
     <?php
     }

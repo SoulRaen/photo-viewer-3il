@@ -63,7 +63,7 @@ EOT;
         if (in_array($nomPage, ["Accueil", "News", "Photos", "Contact"])) {
             $slug = strtolower($nomPage);
             $menuHtml .= <<<EOT
-            <a href="edit/edit-{$slug}.php" class="menu-item" id="edit-page">Éditer</a>
+            <a href="edit-{$slug}.php" class="menu-item" id="edit-page">Éditer</a>
 
 EOT;
         }

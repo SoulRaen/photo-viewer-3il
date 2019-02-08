@@ -8,4 +8,12 @@ if(isset($_SESSION['login'])){
     }
 }
 
+function verificationConnexion(){
+    if(!isset($_SESSION["login"])){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 ?>
