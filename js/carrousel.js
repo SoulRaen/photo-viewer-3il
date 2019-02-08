@@ -31,7 +31,6 @@ function getImages() {
 
 $("#bouton-carrousel-droite").on("click", function () {
     idxImgCourante++;
-    console.log(idxImgCourante);
     //se cale sur la position de l'image de manière à afficher celle correspondant à l'index courant et cacher les autres
     if (idxImgCourante >= 0 && idxImgCourante < listeImages.length) {
         var newVal = (idxImgCourante * 100) + "%";
