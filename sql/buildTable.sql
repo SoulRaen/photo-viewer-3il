@@ -1,4 +1,0 @@
-CREATE TABLE `siteweb`.`users` ( `uID` INT NOT NULL AUTO_INCREMENT , `login` TEXT NOT NULL , `email` TEXT NOT NULL , `mdp` TEXT NOT NULL , `nom` TEXT NOT NULL , `prenom` TEXT NOT NULL , PRIMARY KEY (`uID`)) ENGINE = InnoDB;
-INSERT INTO `users` (`uID`, `login`, `email`, `mdp`, `nom`, `prenom`) VALUES (NULL, 'm.defrances', 'maxime.defrances@hotmail.fr', '123456', 'Defrances', 'Maxime');
-INSERT INTO `users` (`uID`, `login`, `email`, `mdp`, `nom`, `prenom`) VALUES (NULL, 'o.ramond', 'olivier.ramond.pro@gmail.com', 'nimda', 'Ramond', 'Olivier');
-INSERT INTO `users` (`uID`, `login`, `email`, `mdp`, `nom`, `prenom`) VALUES (NULL, 'admin', 'test@test.fr', 'admin', 'Coucou', 'petit filou');
