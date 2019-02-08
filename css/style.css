@@ -9,7 +9,8 @@ body {
     margin: 0px;
     /* variables CSS globales */
     --padding-h-menu: 16px; /* padding horizontal des éléments du menu */
-    --width-menu-item: 100px /* largeur des éléments du menu lorsqu'il est étendable */
+    --width-menu-item: 100px; /* largeur des éléments du menu lorsqu'il est étendable */
+    --bordure-menu: 1px solid white;
 }
 
 nav {
@@ -24,9 +25,9 @@ nav {
     display: none;
     float: left;
     padding: 14px var(--padding-h-menu);
-    border-top: 1px solid white;
-    border-right: 1px solid white;
-    border-bottom: 1px solid white;
+    border-top: var(--bordure-menu);
+    border-right: var(--bordure-menu);
+    border-bottom: var(--bordure-menu);
     border-radius: 0px 10px 10px 0px;
     cursor: pointer;
     position:fixed;
@@ -38,7 +39,7 @@ nav {
     width: 85px;
     float: left;
     padding: 14px var(--padding-h-menu);
-    border-right: 1px solid white;
+    border-right: var(--bordure-menu);
     text-align: center;
     color: inherit;
     text-decoration: none;
@@ -53,9 +54,18 @@ a:hover.menu-item {
     color: black;
 }
 
-#connectionLabel {
+#connectionLabel, #edit-page {
     float: right;
+    border-right: initial; /* retire la bordure droite */
+    border-left: var(--bordure-menu);
+}
+
+#connectionLabel {
     width: initial;
+}
+
+#edit-page {
+    background-color: slategrey ;
 }
 
 @media screen and (max-width: 900px) {
@@ -64,9 +74,9 @@ a:hover.menu-item {
         position:fixed;
         z-index: 255;
         width: calc(var(--width-menu-item) + var(--padding-h-menu) * 2);
-        border-top: 1px solid white;
-        border-right: 1px solid white;
-        border-bottom: 1px solid white;
+        border-top: var(--bordure-menu);
+        border-right: var(--bordure-menu);
+        border-bottom: var(--bordure-menu);
     }
 
     #expand-button {
@@ -75,15 +85,17 @@ a:hover.menu-item {
     
     .menu-item {
         width: var(--width-menu-item);
-        border: initial;
-        float: right;
-        border-bottom: 1px solid white;
+        border: initial; /* retire les bordures */
+        float: right; 
+        border-bottom: var(--bordure-menu);
+    }
+    
+    .menu-item:last-child {
+        border-bottom: initial; /* retire la bordure basse */
     }
     
     #connectionLabel {
-        float: right;
         width: var(--width-menu-item);
-        border-bottom: initial;
     }
 }
 
