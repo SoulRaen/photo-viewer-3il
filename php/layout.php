@@ -1,5 +1,6 @@
 <?php
 require_once("verif-connect.php");
+
 /*
  * Parties réutilisées des pages
  */
@@ -40,8 +41,7 @@ function getMenu($nomPage = ""){
         "News" => "",
         "Photos" => "",
         "Contact" => "",
-        "Espace Pro" => "",
-        "Upload images" =>""
+        "Espace Pro" => ""
     ];
     $pages[$nomPage] = ' id="menu-item-selected"';
     $nom = $_SESSION["nom"] ?? "";
@@ -56,10 +56,17 @@ function getMenu($nomPage = ""){
 
 EOT;
     if (isset($_SESSION["login"])) {
-    $menuHtml .= <<<EOT
+        $menuHtml .= <<<EOT
             <a href="php/deconnexion.php" class="menu-item" id="connectionLabel">{$nom} {$prenom} (Déconnexion)</a>
 
 EOT;
+        if (in_array($nomPage, ["Accueil", "News", "Photos", "Contact"])) {
+            $slug = strtolower($nomPage);
+            $menuHtml .= <<<EOT
+            <a href="edit/edit-{$slug}.php" class="menu-item" id="edit-page">Éditer</a>
+
+EOT;
+        }
     }
     $menuHtml .= <<<EOT
         </nav>
