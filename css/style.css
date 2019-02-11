@@ -214,3 +214,7 @@ section {
     margin : 0px;
     margin-left: 20px;
 }
+.erreur-bdd {
+    background-color: red;
+    color: white;
+}
