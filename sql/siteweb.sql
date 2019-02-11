@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 08 fév. 2019 à 11:51
+-- Généré le :  lun. 11 fév. 2019 à 14:51
 -- Version du serveur :  10.1.31-MariaDB
 -- Version de PHP :  7.2.4
 
@@ -30,18 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `pages` (
   `uID` int(11) NOT NULL,
-  `nom` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nom` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `pages`
 --
 
 INSERT INTO `pages` (`uID`, `nom`) VALUES
+(4, 'contact.php'),
 (1, 'index.php'),
 (2, 'news.php'),
-(3, 'photos.php'),
-(4, 'contact.php');
+(3, 'photos.php');
 
 -- --------------------------------------------------------
 
@@ -54,15 +54,15 @@ CREATE TABLE `sections` (
   `page_id` int(11) NOT NULL,
   `date_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_modification` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `contenu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `contenu` mediumtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `sections`
 --
 
 INSERT INTO `sections` (`uID`, `page_id`, `date_creation`, `date_modification`, `contenu`) VALUES
-(1, 1, '2019-02-08 11:47:03', '2019-02-08 11:47:03', '<p>Pouet et huius modi quaedam innumerabilia ultrix facinorum impiorum bonorumque praemiatrix aliquotiens operatur Adrastia atque utinam semper quam vocabulo duplici etiam Nemesim appellamus: ius quoddam sublime numinis efficacis, humanarum mentium opinione lunari circulo superpositum, vel ut definiunt alii, substantialis tutela generali potentia partilibus praesidens fatis, quam theologi veteres fingentes Iustitiae filiam ex abdita quadam aeternitate tradunt omnia despectare terrena.</p>\r\n<p>Nam sole orto magnitudine angusti gurgitis sed profundi a transitu arcebantur et dum piscatorios quaerunt lenunculos vel innare temere contextis cratibus parant, effusae legiones, quae hiemabant tunc apud Siden, isdem impetu occurrere veloci. et signis prope ripam locatis ad manus comminus conserendas denseta scutorum conpage semet scientissime praestruebant, ausos quoque aliquos fiducia nandi vel cavatis arborum truncis amnem permeare latenter facillime trucidarunt.</p>\r\n<p>Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. in quibus hoc primum est in quo admirer, cur in gravissimis rebus non delectet eos sermo patrius, cum idem fabellas Latinas ad verbum e Graecis expressas non inviti legant. quis enim tam inimicus paene nomini Romano est, qui Ennii Medeam aut Antiopam Pacuvii spernat aut reiciat, quod se isdem Euripidis fabulis delectari dicat, Latinas litteras oderit?\r\n<p>Horum adventum praedocti speculationibus fidis rectores militum tessera data sollemni armatos omnes celeri eduxere procursu et agiliter praeterito Calycadni fluminis ponte, cuius undarum magnitudo murorum adluit turres, in speciem locavere pugnandi. neque tamen exiluit quisquam nec permissus est congredi. formidabatur enim flagrans vesania manus et superior numero et ruitura sine respectu salutis in ferrum.</p>\r\n<p>Cum haec taliaque sollicitas eius aures everberarent expositas semper eius modi rumoribus et patentes, varia animo tum miscente consilia, tandem id ut optimum factu elegit: et Vrsicinum primum ad se venire summo cum honore mandavit ea specie ut pro rerum tunc urgentium captu disponeretur concordi consilio, quibus virium incrementis Parthicarum gentium a arma minantium impetus frangerentur.</p>');
+(1, 1, '2019-02-08 11:47:03', '2019-02-08 11:47:03', '<p>Haéc et huius modi quaedam innumerabilia ultrix facinorum impiorum bonorumque praemiatrix aliquotiens operatur Adrastia atque utinam semper quam vocabulo duplici etiam Nemesim appellamus: ius quoddam sublime numinis efficacis, humanarum mentium opinione lunari circulo superpositum, vel ut definiunt alii, substantialis tutela generali potentia partilibus praesidens fatis, quam theologi veteres fingentes Iustitiae filiam ex abdita quadam aeternitate tradunt omnia despectare terrena.</p>\r\n<p>Nam sole orto magnitudine angusti gurgitis sed profundi a transitu arcebantur et dum piscatorios quaerunt lenunculos vel innare temere contextis cratibus parant, effusae legiones, quae hiemabant tunc apud Siden, isdem impetu occurrere veloci. et signis prope ripam locatis ad manus comminus conserendas denseta scutorum conpage semet scientissime praestruebant, ausos quoque aliquos fiducia nandi vel cavatis arborum truncis amnem permeare latenter facillime trucidarunt.</p>\r\n<p>Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. in quibus hoc primum est in quo admirer, cur in gravissimis rebus non delectet eos sermo patrius, cum idem fabellas Latinas ad verbum e Graecis expressas non inviti legant. quis enim tam inimicus paene nomini Romano est, qui Ennii Medeam aut Antiopam Pacuvii spernat aut reiciat, quod se isdem Euripidis fabulis delectari dicat, Latinas litteras oderit?\r\n<p>Horum adventum praedocti speculationibus fidis rectores militum tessera data sollemni armatos omnes celeri eduxere procursu et agiliter praeterito Calycadni fluminis ponte, cuius undarum magnitudo murorum adluit turres, in speciem locavere pugnandi. neque tamen exiluit quisquam nec permissus est congredi. formidabatur enim flagrans vesania manus et superior numero et ruitura sine respectu salutis in ferrum.</p>\r\n<p>Cum haec taliaque sollicitas eius aures everberarent expositas semper eius modi rumoribus et patentes, varia animo tum miscente consilia, tandem id ut optimum factu elegit: et Vrsicinum primum ad se venire summo cum honore mandavit ea specie ut pro rerum tunc urgentium captu disponeretur concordi consilio, quibus virium incrementis Parthicarum gentium a arma minantium impetus frangerentur.</p>');
 
 -- --------------------------------------------------------
 
@@ -72,12 +72,12 @@ INSERT INTO `sections` (`uID`, `page_id`, `date_creation`, `date_modification`, 
 
 CREATE TABLE `users` (
   `uID` int(11) NOT NULL,
-  `login` text NOT NULL,
-  `email` text NOT NULL,
-  `mdp` text NOT NULL,
-  `nom` text NOT NULL,
-  `prenom` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `login` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `email` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `mdp` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `nom` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `prenom` mediumtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -96,7 +96,8 @@ INSERT INTO `users` (`uID`, `login`, `email`, `mdp`, `nom`, `prenom`) VALUES
 -- Index pour la table `pages`
 --
 ALTER TABLE `pages`
-  ADD PRIMARY KEY (`uID`);
+  ADD PRIMARY KEY (`uID`),
+  ADD UNIQUE KEY `nom` (`nom`);
 
 --
 -- Index pour la table `sections`
