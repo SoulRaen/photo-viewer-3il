@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once("php/layout.php");
-      require_once("php/acces-contenu.php"); ?>
+<?php require_once("php/layout.php"); ?>
 <?= getHead() ?>
     <body>
 <?= getHeader() ?>
