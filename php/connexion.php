@@ -7,7 +7,7 @@ $dbname="siteweb";
 
 try {
     /* Paramétrage connexion */
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
     /* Paramétrage requête */
     $stmt = $conn->prepare("SELECT uID,email,mdp,nom,prenom FROM users WHERE login='".$_POST["user_login"]."'");
     /* Execution requête */
