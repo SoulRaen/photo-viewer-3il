@@ -6,9 +6,7 @@
     <body>
 <?= getHeader() ?>
 <?= getMenu("Accueil") ?>
-        <section>
-            <?= getContenuAccueil() ?>
-        </section>
+<?= getContenu("index.php") ?>
 <?= getScriptsCommuns() ?>
     </body>
 </html>
