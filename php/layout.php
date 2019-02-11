@@ -91,7 +91,7 @@ function getContenu($page) {
         /* Paramétrage connexion */
         $conn = new PDO("mysql:host=".HOST.";dbname=".DATABASE.";charset=utf8", USERNAME, PASSWORD);
         /* Paramétrage requête */
-        $stmt = $conn->prepare("SELECT contenu FROM sections WHERE page_id = (SELECT uID FROM pages WHERE nom = :page) ORDER BY date_creation DESC;");
+        $stmt = $conn->prepare("SELECT contenu, date_creation, date_modification FROM sections WHERE page_id = (SELECT uID FROM pages WHERE nom = :page) ORDER BY date_creation DESC;");
         $stmt->bindValue(":page", $page, PDO::PARAM_STR);
         /* Execution requête */
         if ($stmt->execute()) {
@@ -102,6 +102,7 @@ function getContenu($page) {
                 foreach ($results as $ligne) {
                     $contenu .= <<<EOT
         <section>
+            <p class="date-section" style="text-align: right;width: 100%;">Créé le {$ligne['date_creation']} (dernière modification le {$ligne['date_modification']})</p>
 {$ligne['contenu']}
         </section>
 EOT;
