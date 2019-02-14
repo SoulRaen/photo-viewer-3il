@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php 
-    require_once("php/layout.php");?>
+    require_once("php/layout.php");
+    if (!isset($_SESSION["login"])) {//redirige vers l'accueil si non connecté
+        header('Location: index.php');
+    }
+?>
 <?= getHead() ?>
     <body>
 <?= getHeader() ?>
 <?= getMenu("Espace Pro") ?>
         <section>
-            <h1 class="centered-title">Mise à jour du contenu de la page d'accueil</h1>
+            <h2 class="centered-title">Édition de la page Accueil</h2>
             <textarea spellcheck="false" class ="edit"><?= getContenu("index.php",true)[0]["contenu"] ?></textarea>
             <div>
                 <button class="submit-btn send-info-btn align-left"><img class ="img-in-text" src="https://storage.needpix.com/rsynced_images/cross-mark-304374_1280.png"> Annuler</button>
