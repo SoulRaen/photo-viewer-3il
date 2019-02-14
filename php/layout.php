@@ -84,7 +84,7 @@ EOT;
 
 /**
  * Fournie le contenu de la page en paramètre
- * @param $nomPage le nom de la page dont on veut le contenu. 
+ * @param $page le nom de la page dont on veut le contenu. 
  */
 function getContenu($page, $array = false) {
     try {
