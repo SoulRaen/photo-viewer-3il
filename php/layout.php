@@ -86,7 +86,7 @@ EOT;
  * Fournie le contenu de la page en paramètre
  * @param $nomPage le nom de la page dont on veut le contenu. 
  */
-function getContenu($page) {
+function getContenu($page, $array = false) {
     try {
         /* Paramétrage connexion */
         $conn = new PDO("mysql:host=".HOST.";dbname=".DATABASE.";charset=utf8", USERNAME, PASSWORD);
@@ -97,12 +97,15 @@ function getContenu($page) {
         if ($stmt->execute()) {
             /* Récupération du contenu */
             $results = $stmt->fetchAll();
+            if ($array) {//renvoie directement le tableau si demandé
+                return $results;
+            }
             if (!empty($results)) {
                 $contenu = "";
                 foreach ($results as $ligne) {
                     $contenu .= <<<EOT
         <section>
-            <p class="date-section" style="text-align: right;width: 100%;">Créé le {$ligne['date_creation']} (dernière modification le {$ligne['date_modification']})</p>
+            <p class="date-section">Créé le {$ligne['date_creation']} (dernière modification le {$ligne['date_modification']})</p>
 {$ligne['contenu']}
         </section>
 EOT;
