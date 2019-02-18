@@ -8,7 +8,7 @@
 
     $page="index.php";
     if(isset($_SESSION["login"])){
-        //header("Content-Type: application/json");
+        header("Content-Type: application/json");
         try {
             /* Paramétrage connexion */
             $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
@@ -18,10 +18,22 @@
             $stmt->bindValue(":page", $page, PDO::PARAM_STR);
             /* Execution requête */
             $stmt->execute();
-            /* Traitement des infos */
-            $results = $stmt->fetchAll();
+            $rowcount=$stmt->rowCount();
+           if($rowcount==0 || $rowcount==1){
+                $coderesultat = array("code resultat" => "OK");
+                echo json_encode($coderesultat,JSON_FORCE_OBJECT);
+           }else{
+                $coderesultat = array("code resultat" => "KO");
+                echo json_encode($coderesultat,JSON_FORCE_OBJECT); 
+           }
+            
+            
         }catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            $coderesultat = array("code resultat" => "Error: " . $e->getMessage());
+            echo json_encode($coderesultat,JSON_FORCE_OBJECT);
         }
+    }else{
+        $coderesultat = array("code resultat" => "deco";
+        echo json_encode($coderesultat,JSON_FORCE_OBJECT);
     }
 ?>
