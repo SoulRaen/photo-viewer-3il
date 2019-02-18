@@ -26,10 +26,36 @@
             }
 
             function updateContent(){
-                /* */
-                alert("ok");
+                /* Envoie le contenu */
                 var content = document.getElementById("text-window").value;
                 console.log(content);
+
+                xmlhttp= new XMLHttpRequest();
+                xmlhttp.open('POST', 'php/edit-pages/accueil.php', true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send("contenu="+content);
+                /* Quand l'état change */
+                xmlhttp.onreadystatechange = function (){
+                    /* Chargement de la réponse finie + status HTTP OK */
+                    if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
+                        //var jsonobj = JSON.parse(xmlhttp.responseText);
+
+                        alert(xmlhttp.responseText);
+
+                        /* Réaction à la réponse */
+                        /*switch (jsonobj["code resultat"]) {
+                            case "fichier existe deja" :
+                                alert("Cette image existe déjà sur le serveur.");
+                                break;
+                            case "mauvais type image" :
+                                alert("Type de fichier non autorisé.");
+                                break;
+                            case "upload OK" :
+                                alert("L'envoi s'est déroulé avec succès.");
+                                break;
+                        }*/
+                    }
+                }
             }
 
         </script>
