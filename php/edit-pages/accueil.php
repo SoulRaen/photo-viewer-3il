@@ -26,14 +26,12 @@
                 $coderesultat = array("code resultat" => "KO");
                 echo json_encode($coderesultat,JSON_FORCE_OBJECT); 
            }
-            
-            
         }catch(PDOException $e) {
-            $coderesultat = array("code resultat" => "Error: " . $e->getMessage());
+            $coderesultat = array("code resultat" => "exception","contenuErr" => $e->getMessage());
             echo json_encode($coderesultat,JSON_FORCE_OBJECT);
         }
     }else{
-        $coderesultat = array("code resultat" => "deco";
+        $coderesultat = array("code resultat" => "deco");
         echo json_encode($coderesultat,JSON_FORCE_OBJECT);
     }
 ?>

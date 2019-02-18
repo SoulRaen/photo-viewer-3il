@@ -83,3 +83,41 @@ function supprimerImage() {
         alert("Navigateur obsolète, veuillez le mettre à jour");
     }
 }
+
+function updateAccueilContent(){
+    if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
+        /* Envoie le contenu */
+        var content = document.getElementById("text-window").value;
+        console.log(content);
+
+        xmlhttp= new XMLHttpRequest();
+        xmlhttp.open('POST', 'php/edit-pages/accueil.php', true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("contenu="+content);
+        /* Quand l'état change */
+        xmlhttp.onreadystatechange = function (){
+            /* Chargement de la réponse finie + status HTTP OK */
+            if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
+                var jsonobj = JSON.parse(xmlhttp.responseText);
+
+                /* Réaction à la réponse */
+                switch (jsonobj["code resultat"]) {
+                    case "OK" :
+                        alert("Contenu mis à jour !");
+                        break;
+                    case "KO" :
+                        alert("Erreur : le contenu n'a pas pu être mis à jour");
+                        break;
+                    case "exception" :
+                        alert(jsonobj["contenuErr"]);
+                        break;
+                    case "deco" :
+                        alert("Veuillez vous reconnecter");
+                        break;
+                }
+            }
+        }
+    }else{
+        alert("Navigateur obsolète, veuillez le mettre à jour");
+    }
+}
