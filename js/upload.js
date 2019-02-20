@@ -56,6 +56,7 @@ function supprimerImage() {
         var xmlhttp = new XMLHttpRequest();
         
         xmlhttp.open('POST', 'php/edit-pages/supprimer-image.php', true);
+        xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xmlhttp.send("chemin="+nomImage);
         /* Quand l'état change */
@@ -85,15 +86,16 @@ function supprimerImage() {
     }
 }
 
-function updateContent(nompage){
+function updateContent(uid){
     if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
         /* Envoie le contenu */
-        var content = document.getElementById("text-window").value;
+        var content = document.getElementById("text-window-"+uid).value;
 
         xmlhttp= new XMLHttpRequest();
         xmlhttp.open('POST', 'php/edit-pages/contenu-texte.php', true);
+        xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send("nompage="+nompage+"&contenu="+encodeURIComponent(content));
+        xmlhttp.send("uid="+uid+"&contenu="+encodeURIComponent(content));
         /* Quand l'état change */
         xmlhttp.onreadystatechange = function (){
             /* Chargement de la réponse finie + status HTTP OK */
