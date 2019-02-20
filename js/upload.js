@@ -6,7 +6,7 @@ function upload() {
         formData.append('file', file);  /* FormData : type de données très pratique en JS pour l'envoi de fichiers */
         var xmlhttp = new XMLHttpRequest();
         
-        xmlhttp.open('POST', 'php/upload.php', true);
+        xmlhttp.open('POST', 'php/edit-photo/upload.php', true);
         xmlhttp.send(formData);
         /* Quand l'état change */
         xmlhttp.onreadystatechange = function (){
@@ -54,7 +54,7 @@ function supprimerImage() {
         /* envoie le chemin de l'image à supprimer */
         var xmlhttp = new XMLHttpRequest();
         
-        xmlhttp.open('POST', 'php/supprimer-image.php', true);
+        xmlhttp.open('POST', 'php/edit-pages/supprimer-image.php', true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xmlhttp.send("chemin="+nomImage);
         /* Quand l'état change */
@@ -84,7 +84,7 @@ function supprimerImage() {
     }
 }
 
-function updateAccueilContent(page){
+function updateContent(page){
     if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
         switch (page){
             case "accueil" :

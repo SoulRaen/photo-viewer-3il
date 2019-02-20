@@ -3,7 +3,7 @@
 header("Content-Type: application/json");
 
 // Check if image file is a actual image or fake image
-$target_dir = "../img/";
+$target_dir = "../../img/";
 $target_file = $target_dir . basename($_FILES["file"]["name"]);
 $source_file = $_FILES["file"]["tmp_name"];
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
