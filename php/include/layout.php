@@ -63,7 +63,7 @@ function getMenu($nomPage = ""){
 EOT;
     if (isset($_SESSION["login"])) {
         $menuHtml .= <<<EOT
-            <a href="php/deconnexion.php" class="menu-item" id="connectionLabel">{$nom} {$prenom} (Déconnexion)</a>
+            <a href="php/session/deconnexion.php" class="menu-item" id="connectionLabel">{$nom} {$prenom} (Déconnexion)</a>
 
 EOT;
         if (in_array($nomPage, ["Accueil", "News", "Photos", "Contact"])) {
