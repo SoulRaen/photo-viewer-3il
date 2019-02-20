@@ -23,7 +23,7 @@ function getImages() {
         }
     }
 	//envoi de la requête à php/images.php
-	xmlhttp.open("GET", "./php/images.php", true);
+	xmlhttp.open("GET", "./php/edit-pages/images.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/json");
 	xmlhttp.send();
     

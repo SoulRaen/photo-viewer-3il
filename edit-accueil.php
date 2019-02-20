@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php 
-    require_once("php/layout.php");
+    require_once("php/include/layout.php");
     if (!isset($_SESSION["login"])) {//redirige vers l'accueil si non connecté
         header('Location: index.php');
     }
@@ -15,7 +15,7 @@
             <textarea spellcheck="false" class ="edit" id ="text-window"><?= getContenu("index.php",true)[0]["contenu"] ?></textarea>
             <div>
                 <button class="submit-btn send-info-btn align-left" onclick="abortChanges()"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
-                <button class="submit-btn send-info-btn align-right" onclick="updateAccueilContent()"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
+                <button class="submit-btn send-info-btn align-right" onclick="updateAccueilContent('accueil')"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
             </div>
         </section>
 <?= getScriptsCommuns() ?>

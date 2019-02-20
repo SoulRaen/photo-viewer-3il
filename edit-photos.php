@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php 
-    require_once("php/layout.php");
+    require_once("php/include/layout.php");
     if (!isset($_SESSION["login"])) {//redirige vers l'accueil si non connecté
         header('Location: index.php');
     }
