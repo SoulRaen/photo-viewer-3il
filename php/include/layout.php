@@ -98,6 +98,18 @@ function getContenu($page, $array = false) {
             /* Récupération du contenu */
             $results = $stmt->fetchAll();
             if ($array) {//renvoie directement le tableau si demandé
+                if (empty($results)) {
+                    $stmt = $conn->prepare("INSERT INTO sections (contenu,page_id) VALUES ('Cette page est vide !',  (SELECT uID FROM pages WHERE nom = :page)  );");
+                    $stmt->bindValue(":page", $page, PDO::PARAM_STR);
+                    if (!($stmt->execute())) {
+                        $erreur = $stmt->errorInfo();
+                        return "<span class=\"erreur-bdd\">Error1: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . utf8_encode($erreur[2]) . "</span>";
+                    }else{
+                        $contenu= array("contenu" => "Cette page est vide !");
+                        $resultat = array($contenu);
+                        return $resultat;
+                    }
+                }
                 return $results;
             }
             if (!empty($results)) {
