@@ -12,10 +12,10 @@
 <?= getMenu("Espace Pro") ?>
         <section>
             <h2 class="centered-title">Édition de la page Accueil</h2>
-            <textarea spellcheck="false" class ="edit" id ="text-window"><?= getContenu("index.php",true)[0]["contenu"] ?></textarea>
+            <textarea spellcheck="false" class ="edit" id ="text-window-<?= $results[0]['uID'] ?>"><?= getContenu("index.php",true)[0]["contenu"] ?></textarea>
             <div>
                 <button class="submit-btn send-info-btn align-left" onclick="abortChanges('index.php')"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
-                <button class="submit-btn send-info-btn align-right" onclick="updateContent('index.php')"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
+                <button class="submit-btn send-info-btn align-right" onclick="updateContent('<?= $results[0]['uID'] ?>')"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
             </div>
         </section>
 <?= getScriptsCommuns() ?>
