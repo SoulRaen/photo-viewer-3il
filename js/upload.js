@@ -92,7 +92,7 @@ function updateContent(nompage){
         xmlhttp= new XMLHttpRequest();
         xmlhttp.open('POST', 'php/edit-pages/contenu-texte.php', true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send("nompage="+nompage+"contenu="+content);
+        xmlhttp.send("nompage="+nompage+"&contenu="+content);
         /* Quand l'état change */
         xmlhttp.onreadystatechange = function (){
             /* Chargement de la réponse finie + status HTTP OK */
