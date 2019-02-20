@@ -122,7 +122,7 @@ function updateContent(nompage){
     }
 }
 
-function abortChanges(){
+function abortChanges(nompage){
     /* Redirige vers l'accueil */
-    window.location.replace("index.php");
+    window.location.replace(nompage);
 }

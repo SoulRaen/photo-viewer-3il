@@ -14,7 +14,7 @@
             <h2 class="centered-title">Édition de la page Contact</h2>
             <textarea spellcheck="false" class ="edit" id ="text-window"><?= getContenu("contact.php",true)[0]["contenu"] ?></textarea>
             <div>
-                <button class="submit-btn send-info-btn align-left" onclick="abortChanges()"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
+                <button class="submit-btn send-info-btn align-left" onclick="abortChanges('contact.php')"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
                 <button class="submit-btn send-info-btn align-right" onclick="updateContent('contact.php')"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
             </div>
         </section>

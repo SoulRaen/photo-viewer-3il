@@ -22,7 +22,7 @@
             <h3 class="centered-title">Modification du texte</h3>
             <textarea spellcheck="false" class="edit" id ="text-window"><?= $results[0]['contenu'] ?></textarea>
             <div>
-                <button class="submit-btn send-info-btn align-left" onclick="abortChanges()"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
+                <button class="submit-btn send-info-btn align-left" onclick="abortChanges('photos.php')"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
                 <button class="submit-btn send-info-btn align-right" onclick="updateContent('photos.php')"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
             </div>
         </section>
