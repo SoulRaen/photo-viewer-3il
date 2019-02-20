@@ -13,11 +13,11 @@
             /* Paramétrage connexion */
             $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
             /* Paramétrage requête */
-            $stmt = $conn->prepare("UPDATE `sections` SET `date_modification`=:currentdate,`contenu` = :contenu WHERE page_id = (SELECT uID FROM pages WHERE nom = :page) ORDER BY date_creation DESC;");
+            $stmt = $conn->prepare("UPDATE `sections` SET `date_modification`=:currentdate,`contenu` = :contenu WHERE page_id = (SELECT uID FROM pages WHERE nom = :page);");
             $currentdate=date("Y-m-d H:i:s");
             $stmt->bindValue(":contenu", $_POST["contenu"], PDO::PARAM_STR);
             $stmt->bindValue(":page", $page, PDO::PARAM_STR);
-            $stmt->bindValue(":page", $currentdate, PDO::PARAM_STR);
+            $stmt->bindValue(":currentdate", $currentdate, PDO::PARAM_STR);
             /* Execution requête */
             $stmt->execute();
             $rowcount=$stmt->rowCount();
