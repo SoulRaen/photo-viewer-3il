@@ -12,7 +12,7 @@
     ?>
         <section>
             <form class="form-signin">
-                <h1 class="centered-title">Page de connexion</h1>
+                <h2 class="centered-title">Page de connexion</h2>
                 <input type="login" name="user_login" id="inputLogin" class="form-control" placeholder="Login" required autofocus>
                 <input type="password" name="user_pw" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
                 <button class="submit-btn" type="button" onclick="connect()">Se connecter</button>
@@ -26,13 +26,15 @@
     }else{
         ?>
         <section>
-                <form class ="file-upload" enctype="multipart/form-data">
-                    <h1 class="centered-title">Ajout d'images au carrousel</h1>
-                    <input type="file" id="filename" class="form-control" accept="image/*"/>
-                    <input type="button" onclick="upload()" value="Upload" class="submit-btn"/>
-                </form>
-            </section>
-        <?= getScriptsCommuns() ?>
+            <h2 class="centered-title">Choisissez une page à éditer</h2>
+            <div class="centered-title">
+                <a href="./edit-accueil.php" class="bouton-carre">Accueil</a>
+                <a href="./edit-news.php" class="bouton-carre">News</a>
+                <a href="./edit-photos.php" class="bouton-carre">Photos</a>
+                <a href="./edit-contact.php" class="bouton-carre">Contact</a>
+            </div>
+        </section>
+<?= getScriptsCommuns() ?>
         <script src="./js/upload.js"> </script>
         </body>
     <?php
