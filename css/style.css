@@ -112,6 +112,25 @@ section {
     font-style: italic;
 }
 
+.bouton-carre {
+    display: inline-block;
+    padding: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin: 20px 50px;
+    color: inherit;
+    background-color: lightgrey;
+    text-decoration: none;
+    box-shadow: 3px 3px rgba(0,0,0,0.5);
+}
+
+.bouton-carre:focus {
+    position: relative;
+    top: 2px;
+    left: 2px;
+    box-shadow: initial;
+}
+
 .form-signin {
     width: 100%;
     max-width: 330px;
