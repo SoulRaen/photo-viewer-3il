@@ -19,6 +19,7 @@ function connect(){
 
             /* Paramètre le type de connexion + la destination + type de contenu + contenu */
             xmlhttp.open("POST","./php/session/connexion.php",true);
+            xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xmlhttp.send("user_login="+login+"&user_pw="+mdp);
             /* Quand l'état change */

@@ -6,7 +6,8 @@ function upload() {
         formData.append('file', file);  /* FormData : type de données très pratique en JS pour l'envoi de fichiers */
         var xmlhttp = new XMLHttpRequest();
         
-        xmlhttp.open('POST', 'php/edit-photo/upload.php', true);
+        xmlhttp.open('POST', 'php/edit-pages/upload.php', true);
+        xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xmlhttp.send(formData);
         /* Quand l'état change */
         xmlhttp.onreadystatechange = function (){
