@@ -6,7 +6,7 @@
     $password = "";
     $dbname="siteweb";
 
-    $page="index.php";
+    $page=$_POST["nompage"];
     if(isset($_SESSION["login"])){
         header("Content-Type: application/json");
         try {

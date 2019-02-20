@@ -84,44 +84,37 @@ function supprimerImage() {
     }
 }
 
-function updateContent(page){
+function updateContent(nompage){
     if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
-        switch (page){
-            case "accueil" :
-                /* Envoie le contenu */
-                var content = document.getElementById("text-window").value;
-                console.log(content);
+        /* Envoie le contenu */
+        var content = document.getElementById("text-window").value;
 
-                xmlhttp= new XMLHttpRequest();
-                xmlhttp.open('POST', 'php/edit-pages/accueil.php', true);
-                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xmlhttp.send("contenu="+content);
-                /* Quand l'état change */
-                xmlhttp.onreadystatechange = function (){
-                    /* Chargement de la réponse finie + status HTTP OK */
-                    if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
-                        var jsonobj = JSON.parse(xmlhttp.responseText);
+        xmlhttp= new XMLHttpRequest();
+        xmlhttp.open('POST', 'php/edit-pages/contenu-texte.php', true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("nompage="+nompage+"contenu="+content);
+        /* Quand l'état change */
+        xmlhttp.onreadystatechange = function (){
+            /* Chargement de la réponse finie + status HTTP OK */
+            if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
+                var jsonobj = JSON.parse(xmlhttp.responseText);
 
-                        /* Réaction à la réponse */
-                        switch (jsonobj["code resultat"]) {
-                            case "OK" :
-                                alert("Contenu mis à jour !");
-                                break;
-                            case "KO" :
-                                alert("Erreur : le contenu n'a pas pu être mis à jour");
-                                break;
-                            case "exception" :
-                                alert(jsonobj["contenuErr"]);
-                                break;
-                            case "deco" :
-                                alert("Veuillez vous reconnecter");
-                                break;
-                        }
-                    }
+                /* Réaction à la réponse */
+                switch (jsonobj["code resultat"]) {
+                    case "OK" :
+                        alert("Contenu mis à jour !");
+                        break;
+                    case "KO" :
+                        alert("Erreur : le contenu n'a pas pu être mis à jour");
+                        break;
+                    case "exception" :
+                        alert(jsonobj["contenuErr"]);
+                        break;
+                    case "deco" :
+                        alert("Veuillez vous reconnecter");
+                        break;
                 }
-                break;
-            default :
-                alert ("err page pour JS");
+            }
         }
     }else{
         alert("Navigateur obsolète, veuillez le mettre à jour");
