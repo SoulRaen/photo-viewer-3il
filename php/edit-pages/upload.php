@@ -1,5 +1,8 @@
 <?php
 
+if (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest' ) {
+    header('Location: ../../index.php'); 
+}
 header("Content-Type: application/json");
 
 // Check if image file is a actual image or fake image

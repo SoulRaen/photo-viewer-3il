@@ -24,6 +24,7 @@ function getImages() {
     }
 	//envoi de la requête à php/images.php
 	xmlhttp.open("GET", "./php/edit-pages/images.php", true);
+    xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.setRequestHeader("Content-type", "application/json");
 	xmlhttp.send();
     
