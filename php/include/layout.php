@@ -19,7 +19,7 @@ function getHead($titre = "Viewer") {
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
-        <title>Viewer</title>
+        <title>{$titre}</title>
     </head>
 
 EOT;
@@ -91,7 +91,7 @@ function getContenu($page, $array = false) {
         /* Paramétrage connexion */
         $conn = new PDO("mysql:host=".HOST.";dbname=".DATABASE.";charset=utf8", USERNAME, PASSWORD);
         /* Paramétrage requête */
-        $stmt = $conn->prepare("SELECT contenu, date_creation, date_modification FROM sections WHERE page_id = (SELECT uID FROM pages WHERE nom = :page) ORDER BY date_creation DESC;");
+        $stmt = $conn->prepare("SLECT contenu, date_creation, date_modification FROM sections WHERE page_id = (SELECT uID FROM pages WHERE nom = :page) ORDER BY date_creation DESC;");
         $stmt->bindValue(":page", $page, PDO::PARAM_STR);
         /* Execution requête */
         if ($stmt->execute()) {
@@ -103,7 +103,7 @@ function getContenu($page, $array = false) {
                     $stmt->bindValue(":page", $page, PDO::PARAM_STR);
                     if (!($stmt->execute())) {
                         $erreur = $stmt->errorInfo();
-                        return "<span class=\"erreur-bdd\">Error1: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . utf8_encode($erreur[2]) . "</span>";
+                        return "<span class=\"erreur-bdd\">Error1: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . $erreur[2] . "</span>";
                     }else{
                         $contenu= array("contenu" => "Cette page est vide !");
                         $resultat = array($contenu);
@@ -127,10 +127,10 @@ EOT;
             return "<section><p>Cette page est vide !</p><section>";
         } else { //erreur à l'exécution de la requête
             $erreur = $stmt->errorInfo();
-            return "<span class=\"erreur-bdd\">Error: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . utf8_encode($erreur[2]) . "</span>";
+            return "<span class=\"erreur-bdd\">Error: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . $erreur[2] . "</span>";
         }
     } catch(PDOException $e) {
-        return "<span class=\"erreur-bdd\">Error: " . utf8_encode($e->getMessage()) . "</span>";
+        return "<span class=\"erreur-bdd\">Error: " . $e->getMessage() . "</span>";
     }
 }
 
