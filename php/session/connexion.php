@@ -28,7 +28,7 @@ try {
             $_SESSION['nom']=$results[0]["nom"];
             $_SESSION['prenom']=$results[0]["prenom"];
             $_SESSION['date-heure-login']=time();
-            $_SESSION['duree-session-min']=15;
+            $_SESSION['duree-session-min']=120;
             $coderesultat = array("code resultat" => "connexion OK","nom" => $results[0]["nom"],"prenom" => $results[0]["prenom"],"duree-session-min"=>$_SESSION['duree-session-min']);
             echo json_encode($coderesultat,JSON_FORCE_OBJECT);
         }else{

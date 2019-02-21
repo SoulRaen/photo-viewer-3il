@@ -37,7 +37,7 @@
             <textarea spellcheck="false" class="edit" id ="text-window-<?= $result['uID'] ?>"><?= $result['contenu'] ?></textarea>
             <div>
                 <button class="submit-btn send-info-btn align-left" onclick="abortChanges('news.php')"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
-                <button class="submit-btn send-info-btn align-right" onclick="updateContent(uID)"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
+                <button class="submit-btn send-info-btn align-right" onclick="updateContent($result['uID'])"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
             </div>
             <?php } ?>
         </section>

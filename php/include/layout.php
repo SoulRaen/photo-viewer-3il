@@ -91,40 +91,45 @@ function getContenu($page, $array = false) {
         /* Paramétrage connexion */
         $conn = new PDO("mysql:host=".HOST.";dbname=".DATABASE.";charset=utf8", USERNAME, PASSWORD);
         /* Paramétrage requête */
-        $stmt = $conn->prepare("SLECT contenu, date_creation, date_modification FROM sections WHERE page_id = (SELECT uID FROM pages WHERE nom = :page) ORDER BY date_creation DESC;");
+        $select = "SELECT uID, contenu, date_creation, date_modification FROM sections WHERE page_id = (SELECT uID FROM pages WHERE nom = :page) ORDER BY date_creation DESC;";
+        $stmt = $conn->prepare($select);
         $stmt->bindValue(":page", $page, PDO::PARAM_STR);
         /* Execution requête */
         if ($stmt->execute()) {
             /* Récupération du contenu */
             $results = $stmt->fetchAll();
-            if ($array) {//renvoie directement le tableau si demandé
-                if (empty($results)) {
-                    $stmt = $conn->prepare("INSERT INTO sections (contenu,page_id) VALUES ('Cette page est vide !',  (SELECT uID FROM pages WHERE nom = :page)  );");
-                    $stmt->bindValue(":page", $page, PDO::PARAM_STR);
-                    if (!($stmt->execute())) {
-                        $erreur = $stmt->errorInfo();
-                        return "<span class=\"erreur-bdd\">Error1: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . $erreur[2] . "</span>";
-                    }else{
-                        $contenu= array("contenu" => "Cette page est vide !");
-                        $resultat = array($contenu);
-                        return $resultat;
-                    }
+            if (empty($results) && !in_array($page,['news.php'])) {//Si aucune ligne n'existe, on la crée
+                $stmt = $conn->prepare("INSERT INTO sections (contenu,page_id) VALUES ('<p>Cette page est vide !</p>',  (SELECT uID FROM pages WHERE nom = :page)  );");
+                $stmt->bindValue(":page", $page, PDO::PARAM_STR);
+                if (!($stmt->execute())) {
+                    $erreur = $stmt->errorInfo();
+                    return "<span class=\"erreur-bdd\">Error: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . $erreur[2] . "</span>";
                 }
+                $stmt = $conn->prepare($select);
+                $stmt->bindValue(":page", $page, PDO::PARAM_STR);
+                if (!($stmt->execute())) {
+                    $erreur = $stmt->errorInfo();
+                    return "<span class=\"erreur-bdd\">Error: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . $erreur[2] . "</span>";
+                }
+                $results = $stmt->fetchAll();
+            }
+            if ($array) {//renvoie directement le tableau si demandé
                 return $results;
             }
-            if (!empty($results)) {
-                $contenu = "";
-                foreach ($results as $ligne) {
+            
+            $contenu = "";
+            foreach ($results as $ligne) {
                     $contenu .= <<<EOT
         <section>
             <p class="date-section">Créé le {$ligne['date_creation']} (dernière modification le {$ligne['date_modification']})</p>
 {$ligne['contenu']}
         </section>
 EOT;
-                }
-                return $contenu;
             }
-            return "<section><p>Cette page est vide !</p><section>";
+            if (empty($results) && in_array($page,['news.php'])) {
+                $contenu = "<section><p>Aucune news n'a été publiée.</p></section>";
+            }
+            return $contenu;
         } else { //erreur à l'exécution de la requête
             $erreur = $stmt->errorInfo();
             return "<span class=\"erreur-bdd\">Error: SQLSTATE[{$erreur[0]}] [{$erreur[1]}] " . $erreur[2] . "</span>";
