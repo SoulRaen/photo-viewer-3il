@@ -1,18 +1,18 @@
-/**
- * Affiche/cache le menu du site (en décalant le bouton associé)
+ï»¿/**
+ * Affiche/cache le menu du site (en dÃ©calant le bouton associÃ©)
  */
 function toggleExpand() {
     var largeurMenu = $("nav").css("width");
     if ($("#expand-button").css("left") == "0px") { 
-        $("#expand-button").css("opacity", "1.0"); //adapte l'opacité du bouton
+        $("#expand-button").css("opacity", "1.0"); //adapte l'opacitÃ© du bouton
         $("nav").animate({width: "toggle"}, 350); //effet de slide horizontal
-        $("#expand-button").animate({left: largeurMenu}, 350); //décale le bouton vers la droite
+        $("#expand-button").animate({left: largeurMenu}, 350); //dÃ©cale le bouton vers la droite
     } else { 
         $("#expand-button").animate({left: "0px"}, 350, "swing", //cale le bouton sur la gauche
         function () {
-            $(this).css("opacity", ""); //adapte l'opacité du bouton après l'animation 
-            //supprime la propriété à l'intérieur de l'élément par jQuery pour laisser 
-            //la propriété du définie dans le CSS prendre effet
+            $(this).css("opacity", ""); //adapte l'opacitÃ© du bouton aprÃ¨s l'animation 
+            //supprime la propriÃ©tÃ© Ã  l'intÃ©rieur de l'Ã©lÃ©ment par jQuery pour laisser 
+            //la propriÃ©tÃ© du dÃ©finie dans le CSS prendre effet
         }); 
         $("nav").animate({width: "toggle"}, 350); //effet de slide horizontal
     }
