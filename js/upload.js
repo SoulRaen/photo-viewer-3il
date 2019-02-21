@@ -8,7 +8,6 @@ function upload() {
         
         xmlhttp.open('POST', 'php/edit-pages/upload.php', true);
         xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-        xmlhttp.send(formData);
         /* Quand l'état change */
         xmlhttp.onreadystatechange = function (){
             /* Chargement de la réponse finie + status HTTP OK */
@@ -28,7 +27,8 @@ function upload() {
                         break;
                 }
             }
-        }
+        };
+        xmlhttp.send(formData);
     }else{
         alert("Navigateur obsolète, veuillez le mettre à jour");
     }
@@ -58,11 +58,10 @@ function supprimerImage() {
         xmlhttp.open('POST', 'php/edit-pages/supprimer-image.php', true);
         xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send("chemin="+nomImage);
         /* Quand l'état change */
         xmlhttp.onreadystatechange = function (){
             /* Chargement de la réponse finie + status HTTP OK */
-            if (xmlhttp.readyState ==4 && xmlhttp.status ==200){
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
                 var jsonobj = JSON.parse(xmlhttp.responseText);
 
                 /* Réaction à la réponse */
@@ -79,7 +78,8 @@ function supprimerImage() {
                         break;
                 }
             }
-        }
+        };
+        xmlhttp.send("chemin="+nomImage);
         
     } else {
         alert("Navigateur obsolète, veuillez le mettre à jour");
@@ -95,7 +95,6 @@ function updateContent(uid){
         xmlhttp.open('POST', 'php/edit-pages/contenu-texte.php', true);
         xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send("uid="+uid+"&contenu="+encodeURIComponent(content));
         /* Quand l'état change */
         xmlhttp.onreadystatechange = function (){
             /* Chargement de la réponse finie + status HTTP OK */
@@ -118,7 +117,8 @@ function updateContent(uid){
                         break;
                 }
             }
-        }
+        };
+        xmlhttp.send("uid="+uid+"&contenu="+encodeURIComponent(content));
     }else{
         alert("Navigateur obsolète, veuillez le mettre à jour");
     }

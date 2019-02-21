@@ -8,23 +8,23 @@ function getImages() {
     var xmlhttp = new XMLHttpRequest();
 	
 	xmlhttp.onreadystatechange = function () {
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//en cas de succès de la requête, ajoute les images récupérées au DOM du carrousel
-            listeImages = JSON.parse(this.responseText);
-            $("#carrousel").html("");
-            idxImgCourante = 0;
-            $("#compteur-images").html(idxImgCourante+1 + "/" + listeImages.length);
-            for (i = 0; i < listeImages.length; i++) {
-                $("#carrousel").append("<div class=\"img-container\"><img src=\"./img/" + listeImages[i] + "\" alt=\"photo\" /></div>");
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                //en cas de succès de la requête, ajoute les images récupérées au DOM du carrousel
+                listeImages = JSON.parse(this.responseText);
+                $("#carrousel").html("");
+                idxImgCourante = 0;
+                $("#compteur-images").html(idxImgCourante+1 + "/" + listeImages.length);
+                for (i = 0; i < listeImages.length; i++) {
+                    $("#carrousel").append("<div class=\"img-container\"><img src=\"./img/" + listeImages[i] + "\" alt=\"photo\" /></div>");
+                }
+                $("#bouton-carrousel-droite").show();
+                $("#bouton-carrousel-gauche").hide();
+                $("#compteur-images").show();
             }
-            $("#bouton-carrousel-droite").show();
-            $("#bouton-carrousel-gauche").hide();
-            $("#compteur-images").show();
-        }
-    }
+        };
 	//envoi de la requête à php/images.php
 	xmlhttp.open("GET", "./php/edit-pages/images.php", true);
-    xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	xmlhttp.setRequestHeader("Content-type", "application/json");
 	xmlhttp.send();
     

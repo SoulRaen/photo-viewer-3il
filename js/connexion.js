@@ -21,7 +21,6 @@ function connect(){
             xmlhttp.open("POST","./php/session/connexion.php",true);
             xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            xmlhttp.send("user_login="+login+"&user_pw="+mdp);
             /* Quand l'état change */
             xmlhttp.onreadystatechange = function (){
                 /* Chargement de la réponse finie + status HTTP OK */
@@ -49,7 +48,8 @@ function connect(){
                             window.location.replace("./espace-pro.php");
                     }
                 }
-            }
+            };
+            xmlhttp.send("user_login="+login+"&user_pw="+mdp);
         }else{
             alert("Navigateur obsolète, veuillez le mettre à jour");
         }
