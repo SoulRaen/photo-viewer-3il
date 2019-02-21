@@ -10,7 +10,7 @@
     $dbname="siteweb";
 
     $uID=$_POST["uid"];
-    if(isset($_SESSION["login"])){
+    if(isset($_SESSION["login"])) {
         header("Content-Type: application/json");
         try {
             /* Paramétrage connexion */

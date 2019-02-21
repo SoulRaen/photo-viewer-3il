@@ -20,7 +20,7 @@
         <!-- PARTIE AJOUT -->
         <section id="ajout-news">
             <h3 class="centered-title">Ajout de news</h3>
-            <textarea spellcheck="false" class="edit" id ="text-window"></textarea>
+            <textarea spellcheck="false" class="edit" id ="text-window-ajout"></textarea>
             <div>
                 <button class="submit-btn send-info-btn align-left" onclick="abortChanges('news.php')"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
                 <button class="submit-btn send-info-btn align-right" onclick="ajouterNews()"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
@@ -44,7 +44,17 @@
         <!-- PARTIE SUPPRESSION -->
         <section id="suppr-news" style="display: none">
             <h3 class="centered-title">Suppression de news</h3>
-            <input type="button" onclick="supprimerNews()" value="Supprimer" class="submit-btn"/>
+            <?php 
+            if (count($results) == 0) {
+                echo "Aucune news existante.";
+            }
+            foreach ($results as $result) { ?>
+            <article id="news-<?= $result['uID'] ?>">
+                <p class="date-section">Créé le <?= $result['date_creation'] ?> (dernière modification le <?= $result['date_modification'] ?>)</p>
+                <?= $result['contenu'] ?>
+                <input type="button" onclick="supprimerNews(<?= $result['uID'] ?>)" value="Supprimer" class="submit-btn"/>
+            </article>
+            <?php } ?>
         </section>
 <?= getScriptsCommuns() ?>
         <script src="./js/upload.js"></script>

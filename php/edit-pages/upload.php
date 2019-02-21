@@ -1,5 +1,6 @@
 <?php
 
+require_once("../include/verif-connect.php");
 if (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest' ) {
     header('Location: ../../index.php'); 
 }

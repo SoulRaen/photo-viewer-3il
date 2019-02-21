@@ -34,6 +34,80 @@ function upload() {
     }
 }
 
+function ajouterNews() {
+    if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
+        /* Envoie le contenu */
+        var content = document.getElementById("text-window-ajout").value;
+
+        xmlhttp= new XMLHttpRequest();
+        xmlhttp.open('POST', 'php/edit-pages/ajouter-news.php', true);
+        xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        /* Quand l'état change */
+        xmlhttp.onreadystatechange = function (){
+            /* Chargement de la réponse finie + status HTTP OK */
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                var jsonobj = JSON.parse(xmlhttp.responseText);
+
+                /* Réaction à la réponse */
+                switch (jsonobj["code resultat"]) {
+                    case "OK" :
+                        alert("News postée !");
+                        break;
+                    case "KO" :
+                        alert("Erreur : la news n'a pas pu être postée.");
+                        break;
+                    case "exception" :
+                        alert(jsonobj["contenuErr"]);
+                        break;
+                    case "deco" :
+                        alert("Veuillez vous reconnecter");
+                        break;
+                }
+            }
+        };
+        xmlhttp.send("contenu="+encodeURIComponent(content));
+    }else{
+        alert("Navigateur obsolète, veuillez le mettre à jour");
+    }
+}
+
+function supprimerNews(uid) {
+    if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
+        xmlhttp= new XMLHttpRequest();
+        xmlhttp.open('POST', 'php/edit-pages/supprimer-news.php', true);
+        xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        /* Quand l'état change */
+        xmlhttp.onreadystatechange = function (){
+            /* Chargement de la réponse finie + status HTTP OK */
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                var jsonobj = JSON.parse(xmlhttp.responseText);
+
+                /* Réaction à la réponse */
+                switch (jsonobj["code resultat"]) {
+                    case "OK" :
+                        alert("News supprimée !");
+                        document.getElementById("news-"+uid).outerHTML = "";
+                        break;
+                    case "KO" :
+                        alert("Erreur : la news n'a pas pu être supprimée.");
+                        break;
+                    case "exception" :
+                        alert(jsonobj["contenuErr"]);
+                        break;
+                    case "deco" :
+                        alert("Veuillez vous reconnecter");
+                        break;
+                }
+            }
+        };
+        xmlhttp.send("uid="+uid);
+    }else{
+        alert("Navigateur obsolète, veuillez le mettre à jour");
+    }
+}
+
 function supprimerImage() {
     
     if(window.XMLHttpRequest){          /* Si XMLHttpRequest supporté */
