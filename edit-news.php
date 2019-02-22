@@ -12,7 +12,7 @@
 <?= getMenu("Espace Pro") ?>
 <?php $results = getContenu("news.php", true); ?>
         <section id="choix-mode"><!-- Choix des modifs à faire -->
-            <h2 class="centered-title">Édition de la page Photos</h2>
+            <h2 class="centered-title">Édition de la page News</h2>
             <label><input name="mode" type="radio" value="ajout" checked />Ajouter des news</label>
             <label><input name="mode" type="radio" value="modif" />Modifier des news</label>
             <label><input name="mode" type="radio" value="suppr" />Supprimer des news</label>
@@ -34,8 +34,9 @@
                 echo "Aucune news existante.";
             }
             foreach ($results as $result) { ?>
+            <p class="date-section">Créé le <?= $result['date_creation'] ?> (dernière modification le <?= $result['date_modification'] ?>)</p>
             <textarea spellcheck="false" class="edit" id ="text-window-<?= $result['uID'] ?>"><?= $result['contenu'] ?></textarea>
-            <div>
+            <div style="overflow:auto">
                 <button class="submit-btn send-info-btn align-left" onclick="abortChanges('news.php')"><img class ="img-in-text" src="assets/red-cross-error.png"> Annuler</button>
                 <button class="submit-btn send-info-btn align-right" onclick="updateContent(<?= $result['uID'] ?>)"><img class ="img-in-text" src="assets/green-check-mark.png"> Accepter</button>
             </div>
